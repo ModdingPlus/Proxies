@@ -28,7 +28,7 @@ public class CapabilityPointer<T>{
         this.wrapper = null;
     }
 
-    private CapabilityPointer(World world, BlockPos blockPos, Direction side, @Nullable Function<T,T> wrapper) {
+    private CapabilityPointer(World world, BlockPos blockPos, @Nullable Direction side, @Nullable Function<T,T> wrapper) {
         this.isPresent = true;
         this.world = world;
         this.blockPos = blockPos;
@@ -40,10 +40,10 @@ public class CapabilityPointer<T>{
         return new CapabilityPointer<>();
     }
 
-    public static <T> CapabilityPointer<T> of(World world, BlockPos blockPos, Direction side) {
+    public static <T> CapabilityPointer<T> of(World world, BlockPos blockPos, @Nullable Direction side) {
         return new CapabilityPointer<>(world, blockPos, side, null);
     }
-    public static <T> CapabilityPointer<T> of(World world, BlockPos blockPos, Direction side, Function<T,T> wrapper) {
+    public static <T> CapabilityPointer<T> of(World world, BlockPos blockPos, @Nullable Direction side, Function<T,T> wrapper) {
         return new CapabilityPointer<>(world, blockPos, side, wrapper);
     }
 
