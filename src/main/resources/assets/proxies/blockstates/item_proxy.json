@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"facing=up":    { "model": "proxies:block/item_proxy"           },
+		"facing=down":  { "model": "proxies:block/item_proxy", "x": 180 },
+		"facing=north": { "model": "proxies:block/item_proxy", "x": 90  },
+		"facing=east":  { "model": "proxies:block/item_proxy", "x": 90, "y": 90 },
+		"facing=south": { "model": "proxies:block/item_proxy", "x": 270 },
+		"facing=west":  { "model": "proxies:block/item_proxy", "x": 90, "y": 270 }
+	}
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "proxies:block/item_proxy/back",
+        "side": "proxies:block/item_proxy/side",
+        "top": "proxies:block/item_proxy/output"
+    }
+}
