@@ -27,7 +27,7 @@ public class SidedCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
         Direction facing = this.getBlockState().get(DirectionalBlock.FACING);
         if(!pointers.contains(capability, side)) {
             if(this.supportedCapabilities.contains(capability))
-                pointers.put(capability, side, CapabilityPointer.<T>of(this.getWorld(), this.getPos().offset(facing)));
+                pointers.put(capability, side, CapabilityPointer.<T>of(this.getWorld(), this.getPos().offset(facing), side));
             else
                 pointers.put(capability, side, CapabilityPointer.<T>empty());
         }

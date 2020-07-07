@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "proxies:item_proxy",
+  "ingredients": [
+    {
+      "item": "proxies:sided_item_proxy"
+    }
+  ],
+  "result": {
+    "item": "proxies:item_proxy"
+  }
+}

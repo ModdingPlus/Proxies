@@ -1,0 +1,12 @@
+{
+  "block.proxies.item_proxy": "Item Proxy",
+  "tooltip.proxies.item_proxy": "A passive block that redirects every interaction with its inventory to the targeted block.",
+  "block.proxies.sided_item_proxy": "Side-Preserving Item Proxy",
+  "tooltip.proxies.sided_item_proxy": "An item proxy that respects the side the proxy was accessed from.",
+  "block.proxies.fluid_proxy": "Fluid Proxy",
+  "tooltip.proxies.fluid_proxy": "A passive block that redirects every interaction with its fluid inventory to the targeted block.",
+  "block.proxies.sided_fluid_proxy": "Side-Preserving Fluid Proxy",
+  "tooltip.proxies.sided_fluid_proxy": "A fluid proxy that respects the side the proxy was accessed from.",
+
+  "itemGroup.proxies": "Proxies"
+}

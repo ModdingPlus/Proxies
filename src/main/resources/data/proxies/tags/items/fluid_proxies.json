@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "proxies:fluid_proxy",
+    "proxies:sided_fluid_proxy"
+  ]
+}

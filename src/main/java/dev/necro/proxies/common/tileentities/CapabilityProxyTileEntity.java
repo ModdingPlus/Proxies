@@ -33,7 +33,7 @@ public abstract class CapabilityProxyTileEntity extends TileEntity implements Ca
     }
 
     public void invalidateCachedHandlers(){
-        for(LazyOptional<?> handler : this.cachedHandlers)
+        for(LazyOptional<?> handler : new HashSet<>(cachedHandlers))
             handler.invalidate();
     }
 

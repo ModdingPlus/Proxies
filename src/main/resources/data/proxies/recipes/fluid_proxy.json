@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "proxies:fluid_proxy",
+  "pattern": [
+    "#F#",
+    "FBF",
+    "#F#"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "F": {
+      "tag": "minecraft:fences"
+    },
+    "B": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "item": "proxies:fluid_proxy",
+    "count": 3
+  }
+}

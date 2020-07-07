@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "proxies:sided_item_proxy_to_regular"
+    ]
+  },
+  "criteria": {
+    "has_proxy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "proxies:item_proxy"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "proxies:sided_item_proxy_to_regular"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_proxy",
+      "has_the_recipe"
+    ]
+  ]
+}
