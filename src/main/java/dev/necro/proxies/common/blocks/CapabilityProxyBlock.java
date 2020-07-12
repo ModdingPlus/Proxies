@@ -1,7 +1,6 @@
 package dev.necro.proxies.common.blocks;
 
-import dev.necro.proxies.common.tileentities.CapabilityProxyTileEntity;
-import dev.necro.proxies.common.tileentities.ModTileEntities;
+import dev.necro.proxies.CapabilityProxyTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
@@ -11,9 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;

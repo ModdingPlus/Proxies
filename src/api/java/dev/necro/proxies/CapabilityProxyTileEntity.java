@@ -1,9 +1,5 @@
-package dev.necro.proxies.common.tileentities;
+package dev.necro.proxies;
 
-import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Table;
-import dev.necro.proxies.common.CapabilityPointer;
-import net.minecraft.block.DirectionalBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;

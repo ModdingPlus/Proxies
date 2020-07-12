@@ -1,6 +1,5 @@
-package dev.necro.proxies.common;
+package dev.necro.proxies;
 
-import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -36,15 +35,15 @@ public class CapabilityPointer<T>{
         this.wrapper = wrapper;
     }
 
-    public static <T> CapabilityPointer<T> empty(){
-        return new CapabilityPointer<>();
+    public static <T> dev.necro.proxies.CapabilityPointer<T> empty(){
+        return new dev.necro.proxies.CapabilityPointer<>();
     }
 
-    public static <T> CapabilityPointer<T> of(World world, BlockPos blockPos, @Nullable Direction side) {
-        return new CapabilityPointer<>(world, blockPos, side, null);
+    public static <T> dev.necro.proxies.CapabilityPointer<T> of(World world, BlockPos blockPos, @Nullable Direction side) {
+        return new dev.necro.proxies.CapabilityPointer<>(world, blockPos, side, null);
     }
-    public static <T> CapabilityPointer<T> of(World world, BlockPos blockPos, @Nullable Direction side, Function<T,T> wrapper) {
-        return new CapabilityPointer<>(world, blockPos, side, wrapper);
+    public static <T> dev.necro.proxies.CapabilityPointer<T> of(World world, BlockPos blockPos, @Nullable Direction side, Function<T,T> wrapper) {
+        return new dev.necro.proxies.CapabilityPointer<>(world, blockPos, side, wrapper);
     }
 
     public World getWorld() { return this.world; }

@@ -1,17 +1,15 @@
-package dev.necro.proxies.common.tileentities;
+package dev.necro.proxies;
 
-import dev.necro.proxies.common.CapabilityPointer;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.*;
+import java.util.Collection;
+import java.util.Stack;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
@@ -38,9 +36,9 @@ public interface CapabilityProxy {
 
             TileEntity tileEntity = currentPointer.getTileEntity();
             if (tileEntity != null){
-                if (tileEntity instanceof CapabilityProxy) {
+                if (tileEntity instanceof dev.necro.proxies.CapabilityProxy) {
                     // if the tile entity is a proxy next code
-                    currentPointer = ((CapabilityProxy) tileEntity).getProxyCapabilityPointer(capability, currentPointer.getSide());
+                    currentPointer = ((dev.necro.proxies.CapabilityProxy) tileEntity).getProxyCapabilityPointer(capability, currentPointer.getSide());
                 } else {
                     LazyOptional<T> handler = tileEntity.getCapability(capability, currentPointer.getSide());
 
@@ -70,7 +68,7 @@ public interface CapabilityProxy {
             returnHandler = LazyOptional.empty();
 
         // add the wrapped handler to the proxies so they can invalidate them when destroyed/rotated etc.
-        CapabilityProxy.addCachedCapabilityHandlers(capability, pointers, returnHandler);
+        addCachedCapabilityHandlers(capability, pointers, returnHandler);
 
         return returnHandler;
     }
@@ -80,8 +78,8 @@ public interface CapabilityProxy {
     static <T> void addCachedCapabilityHandlers(Capability<T> capability, Collection<CapabilityPointer<T>> pointers, LazyOptional<T> handler){
         for(CapabilityPointer<T> cachePointer : pointers) {
             TileEntity cacheTileEntity = cachePointer.getTileEntity();
-            if (cacheTileEntity instanceof CapabilityProxy)
-                ((CapabilityProxy) cacheTileEntity).addCachedCapabilityHandler(capability, cachePointer.getSide(), handler);
+            if (cacheTileEntity instanceof dev.necro.proxies.CapabilityProxy)
+                ((dev.necro.proxies.CapabilityProxy) cacheTileEntity).addCachedCapabilityHandler(capability, cachePointer.getSide(), handler);
         }
     }
 

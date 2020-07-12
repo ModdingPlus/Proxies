@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -26,10 +25,10 @@ public class ModBlocks {
     @SuppressWarnings({"ConstantConditions", "Convert2MethodRef"})
     public static void registerBlocks(RegistryEvent.Register<Block> event){
         IForgeRegistry<Block> registry = event.getRegistry();
-        registry.register(new CapabilityProxyBlock(Block.Properties.from(Blocks.CRAFTING_TABLE), ()->ModTileEntities.ITEM_PROXY.create()).setRegistryName("item_proxy"));
-        registry.register(new CapabilityProxyBlock(Block.Properties.from(Blocks.CRAFTING_TABLE), ()->ModTileEntities.SIDED_ITEM_PROXY.create()).setRegistryName("sided_item_proxy"));
-        registry.register(new CapabilityProxyBlock(Block.Properties.from(Blocks.CRAFTING_TABLE), ()->ModTileEntities.ITEM_PROXY.create()).setRegistryName("fluid_proxy"));
-        registry.register(new CapabilityProxyBlock(Block.Properties.from(Blocks.CRAFTING_TABLE), ()->ModTileEntities.SIDED_ITEM_PROXY.create()).setRegistryName("sided_fluid_proxy"));
+        registry.register(new CapabilityProxyBlock(Block.Properties.from(Blocks.CRAFTING_TABLE), ()-> ModTileEntities.ITEM_PROXY.create()).setRegistryName("item_proxy"));
+        registry.register(new CapabilityProxyBlock(Block.Properties.from(Blocks.CRAFTING_TABLE), ()-> ModTileEntities.SIDED_ITEM_PROXY.create()).setRegistryName("sided_item_proxy"));
+        registry.register(new CapabilityProxyBlock(Block.Properties.from(Blocks.CRAFTING_TABLE), ()-> ModTileEntities.ITEM_PROXY.create()).setRegistryName("fluid_proxy"));
+        registry.register(new CapabilityProxyBlock(Block.Properties.from(Blocks.CRAFTING_TABLE), ()-> ModTileEntities.SIDED_ITEM_PROXY.create()).setRegistryName("sided_fluid_proxy"));
     }
 
     @SubscribeEvent

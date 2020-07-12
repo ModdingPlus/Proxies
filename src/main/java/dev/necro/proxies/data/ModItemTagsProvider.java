@@ -1,7 +1,7 @@
 package dev.necro.proxies.data;
 
-import dev.necro.proxies.common.items.ModItemTags;
 import dev.necro.proxies.common.blocks.ModBlockTags;
+import dev.necro.proxies.common.items.ModItemTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
 

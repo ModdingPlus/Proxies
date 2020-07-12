@@ -6,24 +6,24 @@ loaderVersion="[31,)"
 modId="proxies"
 version="${file.jarVersion}"
 displayName="Proxies"
-updateJSONURL="https://gist.githubusercontent.com/Necr0/22a14ea04a63b0b1fe1484c46fb6786a/raw/coyotelib_update.json"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/coyotelib"
-logoFile="coyotelib.png"
+updateJSONURL="https://gist.githubusercontent.com/Necr0/22a14ea04a63b0b1fe1484c46fb6786a/raw/proxies_update.json"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/proxies"
+logoFile="proxies.png"
 credits="Thanks to the Forge Team, the Forge Discord Channel, and the MMD Discord Channel."
 
 authors="Necro"
 description='''
-A library mod providing things like a double jump and coyote time API that for mods to tap into. It also provides a customizable debug overlay and custom gamerules.
+A mod that provides passive blocks that provide access to target blocks' inventories.
 '''
 
-[[dependencies.coyotelib]]
+[[dependencies.proxies]]
     modId="forge"
     mandatory=true
     versionRange="[31,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.coyotelib]]
+[[dependencies.proxies]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.15.2]"

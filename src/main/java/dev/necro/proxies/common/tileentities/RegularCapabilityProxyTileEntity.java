@@ -1,6 +1,7 @@
 package dev.necro.proxies.common.tileentities;
 
-import dev.necro.proxies.common.CapabilityPointer;
+import dev.necro.proxies.CapabilityPointer;
+import dev.necro.proxies.CapabilityProxyTileEntity;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.DirectionalBlock;
 import net.minecraft.tileentity.TileEntityType;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class RegularCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
-    private final HashMap<Capability<?>,CapabilityPointer<?>> pointers = new HashMap<>();
+    private final HashMap<Capability<?>, CapabilityPointer<?>> pointers = new HashMap<>();
 
     public RegularCapabilityProxyTileEntity(TileEntityType<?> tileEntityTypeIn, Capability<?>... supportedCapabilities) {
         super(tileEntityTypeIn, supportedCapabilities);

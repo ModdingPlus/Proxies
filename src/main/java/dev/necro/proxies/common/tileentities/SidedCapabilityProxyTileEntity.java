@@ -2,7 +2,8 @@ package dev.necro.proxies.common.tileentities;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import dev.necro.proxies.common.CapabilityPointer;
+import dev.necro.proxies.CapabilityPointer;
+import dev.necro.proxies.CapabilityProxyTileEntity;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.DirectionalBlock;
 import net.minecraft.tileentity.TileEntityType;
@@ -11,12 +12,11 @@ import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.HashMap;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class SidedCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
-    private final Table<Capability<?>,Direction,CapabilityPointer<?>> pointers = HashBasedTable.create();
+    private final Table<Capability<?>,Direction, CapabilityPointer<?>> pointers = HashBasedTable.create();
 
     public SidedCapabilityProxyTileEntity(TileEntityType<?> tileEntityTypeIn, Capability<?>... supportedCapabilities) {
         super(tileEntityTypeIn, supportedCapabilities);
