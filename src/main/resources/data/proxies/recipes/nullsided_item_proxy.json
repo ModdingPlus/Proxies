@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "proxies:nullsided_item_proxy",
+  "ingredients": [
+    {
+      "item": "proxies:sided_item_proxy"
+    },
+    {
+      "tag": "forge:ender_pearls"
+    }
+  ],
+  "result": {
+    "item": "proxies:nullsided_item_proxy"
+  }
+}

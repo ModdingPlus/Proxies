@@ -3,10 +3,38 @@
   "tooltip.proxies.item_proxy": "A passive block that redirects every interaction with its inventory to the targeted block.",
   "block.proxies.sided_item_proxy": "Side-Preserving Item Proxy",
   "tooltip.proxies.sided_item_proxy": "An item proxy that respects the side the proxy was accessed from.",
+  "block.proxies.nullsided_item_proxy": "Null-Sided Item Proxy",
+  "tooltip.proxies.nullsided_item_proxy": "An item proxy that accesses the the target on... \"the null-side of the block\"??",
+  "block.proxies.filtered_item_proxy": "Filtered Item Proxy",
+  "tooltip.proxies.filtered_item_proxy": "An item proxy that allows filtering items.",
+  "block.proxies.merger_item_proxy": "Inventory Merger",
+  "tooltip.proxies.merger_item_proxy": "An item proxy that combines two inventories into one big inventory.",
+
   "block.proxies.fluid_proxy": "Fluid Proxy",
   "tooltip.proxies.fluid_proxy": "A passive block that redirects every interaction with its fluid inventory to the targeted block.",
   "block.proxies.sided_fluid_proxy": "Side-Preserving Fluid Proxy",
   "tooltip.proxies.sided_fluid_proxy": "A fluid proxy that respects the side the proxy was accessed from.",
+  "block.proxies.nullsided_fluid_proxy": "Null-Sided Fluid Proxy",
+  "tooltip.proxies.nullsided_fluid_proxy": "An fluid proxy that accesses the the target on... \"the null-side of the block\"??",
+  "block.proxies.filtered_fluid_proxy": "Filtered Fluid Proxy",
+  "tooltip.proxies.filtered_fluid_proxy": "A fluid proxy that allows filtering fluids.",
+  "block.proxies.merger_fluid_proxy": "Tank Merger",
+  "tooltip.proxies.merger_fluid_proxy": "A fluid proxy that combines two tanks into one big tank.",
+
+  "block.proxies.energy_proxy": "Energy Proxy",
+  "tooltip.proxies.energy_proxy": "A passive block that redirects every interaction with its energy storage to the targeted block.",
+  "block.proxies.merger_energy_proxy": "Battery Merger",
+  "tooltip.proxies.merger_energy_proxy": "An energy proxy that combines two energy storages into one big one.",
+
+  "screen.proxies.filtered_item_proxy": "Filtered Item Proxy",
+  "screen.proxies.filtered_fluid_proxy": "Filtered Fluid Proxy",
+
+  "tooltip.proxies.ignore_nbt": "Ignore NBT",
+  "tooltip.proxies.match_nbt": "Match NBT",
+  "tooltip.proxies.whitelist": "Whitelist",
+  "tooltip.proxies.blacklist": "Blacklist",
+  "tooltip.proxies.toggle_nbt_filtering": "Toggle NBT Filtering",
+  "tooltip.proxies.toggle_whitelist": "Toggle Whitelist",
 
   "itemGroup.proxies": "Proxies"
 }

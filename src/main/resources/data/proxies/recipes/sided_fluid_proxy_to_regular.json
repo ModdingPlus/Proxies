@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "proxies:item_proxy",
+  "group": "proxies:fluid_proxy",
   "ingredients": [
     {
       "item": "proxies:sided_fluid_proxy"

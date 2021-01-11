@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "proxies:merger_item_proxy",
+    "proxies:merger_fluid_proxy",
+    "proxies:merger_energy_proxy"
+  ]
+}

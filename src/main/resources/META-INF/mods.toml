@@ -1,17 +1,18 @@
 modLoader="javafml"
 loaderVersion="[31,)"
-# issueTrackerURL="http://my.issue.tracker/" #optional
+issueTrackerURL="https://github.com/QbDesu/Proxies/issues"
+license="Unlicense"
 
 [[mods]]
 modId="proxies"
 version="${file.jarVersion}"
 displayName="Proxies"
-updateJSONURL="https://gist.githubusercontent.com/Necr0/22a14ea04a63b0b1fe1484c46fb6786a/raw/proxies_update.json"
+updateJSONURL="https://gist.githubusercontent.com/QbDesu/134ab0df3a1580f6df6dc55383d58eae/raw/proxies_update.json"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/proxies"
 logoFile="proxies.png"
 credits="Thanks to the Forge Team, the Forge Discord Channel, and the MMD Discord Channel."
 
-authors="Necro"
+authors="Qb"
 description='''
 A mod that provides passive blocks that provide access to target blocks' inventories.
 '''
@@ -19,13 +20,13 @@ A mod that provides passive blocks that provide access to target blocks' invento
 [[dependencies.proxies]]
     modId="forge"
     mandatory=true
-    versionRange="[31,)"
+    versionRange="[35,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.proxies]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15.2]"
+    versionRange="[1.16.4]"
     ordering="NONE"
     side="BOTH"

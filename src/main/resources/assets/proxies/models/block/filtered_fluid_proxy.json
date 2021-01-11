@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "proxies:block/filtered_fluid_proxy_side",
+    "bottom": "proxies:block/filtered_fluid_proxy_bottom",
+    "top": "proxies:block/filtered_fluid_proxy_top"
+  }
+}

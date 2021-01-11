@@ -3,7 +3,15 @@
   "values": [
     "proxies:item_proxy",
     "proxies:sided_item_proxy",
+    "proxies:nullsided_item_proxy",
+    "proxies:filtered_item_proxy",
+    "proxies:merger_item_proxy",
     "proxies:fluid_proxy",
-    "proxies:sided_fluid_proxy"
+    "proxies:sided_fluid_proxy",
+    "proxies:nullsided_fluid_proxy",
+    "proxies:filtered_fluid_proxy",
+    "proxies:merger_fluid_proxy",
+    "proxies:energy_proxy",
+    "proxies:merger_energy_proxy"
   ]
 }

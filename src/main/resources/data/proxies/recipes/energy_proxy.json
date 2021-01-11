@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "proxies:energy_proxy",
+  "pattern": [
+    "#F#",
+    "FGF",
+    "#F#"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "F": {
+      "tag": "minecraft:fences"
+    },
+    "G": {
+      "tag": "forge:ingots/gold"
+    }
+  },
+  "result": {
+    "item": "proxies:energy_proxy",
+    "count": 3
+  }
+}

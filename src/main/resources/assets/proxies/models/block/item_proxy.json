@@ -1,5 +1,5 @@
 {
-  "parent": "block/cube_bottom_top",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
     "side": "proxies:block/item_proxy_side",
     "bottom": "proxies:block/item_proxy_bottom",

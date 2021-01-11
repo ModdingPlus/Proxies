@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "proxies:merger_item_proxy",
+  "pattern": [
+    "#F#",
+    "H H",
+    "#F#"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "F": {
+      "tag": "minecraft:fences"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    }
+  },
+  "result": {
+    "item": "proxies:merger_item_proxy",
+    "count": 3
+  }
+}

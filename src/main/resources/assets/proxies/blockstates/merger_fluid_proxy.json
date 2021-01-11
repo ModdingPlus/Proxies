@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "proxies:block/merger_fluid_proxy",
+      "x": 180
+    },
+    "facing=up": {
+      "model": "proxies:block/merger_fluid_proxy"
+    },
+    "facing=north": {
+      "model": "proxies:block/merger_fluid_proxy",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "proxies:block/merger_fluid_proxy",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west": {
+      "model": "proxies:block/merger_fluid_proxy",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east": {
+      "model": "proxies:block/merger_fluid_proxy",
+      "x": 90,
+      "y": 90
+    }
+  }
+}
