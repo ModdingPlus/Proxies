@@ -5,6 +5,8 @@
   "tooltip.proxies.sided_item_proxy": "An item proxy that respects the side the proxy was accessed from.",
   "block.proxies.nullsided_item_proxy": "Null-Sided Item Proxy",
   "tooltip.proxies.nullsided_item_proxy": "An item proxy that accesses the the target on... \"the null-side of the block\"??",
+  "block.proxies.junction_item_proxy": "Junction Item Proxy",
+  "tooltip.proxies.junction_item_proxy": "EXPERIMENTAL: An item proxy that functions as a junction, allowing crossing multiple proxy chains.",
   "block.proxies.filtered_item_proxy": "Filtered Item Proxy",
   "tooltip.proxies.filtered_item_proxy": "An item proxy that allows filtering items.",
   "block.proxies.merger_item_proxy": "Inventory Merger",

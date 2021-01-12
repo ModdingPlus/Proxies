@@ -19,6 +19,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         this.withExistingParentBlock(ModBlocks.ITEM_PROXY.get());
         this.withExistingParentBlock(ModBlocks.SIDED_ITEM_PROXY.get());
         this.withExistingParentBlock(ModBlocks.NULLSIDED_ITEM_PROXY.get());
+        this.withExistingParentBlock(ModBlocks.JUNCTION_ITEM_PROXY.get());
         this.withExistingParentBlock(ModBlocks.FILTERED_ITEM_PROXY.get());
         this.withExistingParentBlock(ModBlocks.MERGER_ITEM_PROXY.get());
 

@@ -15,22 +15,23 @@ import net.minecraftforge.common.capabilities.Capability;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.HashMap;
+import java.util.Optional;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class SidedCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
+public class JunctionCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
     private final NullableHashBasedTable<Capability<?>, Direction, CapabilityPointer<?>> pointers = new NullableHashBasedTable<>();
 
-    public SidedCapabilityProxyTileEntity(TileEntityType<?> tileEntityTypeIn, Capability<?>... supportedCapabilities) {
+    public JunctionCapabilityProxyTileEntity(TileEntityType<?> tileEntityTypeIn, Capability<?>... supportedCapabilities) {
         super(tileEntityTypeIn, supportedCapabilities);
     }
 
     @Override
     public <T> CapabilityPointer<T> getProxyCapabilityPointer(Capability<T> capability, @Nullable Direction side, int chainIndex) {
-        Direction facing = this.getBlockState().get(DirectionalBlock.FACING);
         if(!pointers.contains(capability, side)) {
-            if(this.supportedCapabilities.contains(capability))
-                pointers.put(capability, side, CapabilityPointer.<T>of(this.getWorld(), this.getPos().offset(facing), side));
+            if(this.supportedCapabilities.contains(capability) && side!=null)
+                pointers.put(capability, side, CapabilityPointer.<T>of(this.getWorld(), this.getPos().offset(side.getOpposite()), side));
             else
                 pointers.put(capability, side, CapabilityPointer.<T>empty());
         }

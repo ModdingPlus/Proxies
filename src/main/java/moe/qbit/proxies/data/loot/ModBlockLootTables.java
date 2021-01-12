@@ -15,6 +15,7 @@ public class ModBlockLootTables extends BaseLootTableProvider {
       lootTables.put(ModBlocks.ITEM_PROXY.get(), createStandardTable(ModBlocks.ITEM_PROXY.get()));
       lootTables.put(ModBlocks.SIDED_ITEM_PROXY.get(), createStandardTable(ModBlocks.SIDED_ITEM_PROXY.get()));
       lootTables.put(ModBlocks.NULLSIDED_ITEM_PROXY.get(), createStandardTable(ModBlocks.NULLSIDED_ITEM_PROXY.get()));
+      lootTables.put(ModBlocks.JUNCTION_ITEM_PROXY.get(), createStandardTable(ModBlocks.JUNCTION_ITEM_PROXY.get()));
       lootTables.put(ModBlocks.FILTERED_ITEM_PROXY.get(), createStandardTable(ModBlocks.FILTERED_ITEM_PROXY.get()));
       lootTables.put(ModBlocks.MERGER_ITEM_PROXY.get(), createStandardTable(ModBlocks.MERGER_ITEM_PROXY.get()));
 

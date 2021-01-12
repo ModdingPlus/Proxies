@@ -39,6 +39,8 @@ public class ModTileEntities {
     public static final TileEntityType<?> SIDED_ITEM_PROXY = null;
     @ObjectHolder("nullsided_item_proxy")
     public static final TileEntityType<?> NULLSIDED_ITEM_PROXY = null;
+    @ObjectHolder("junction_item_proxy")
+    public static final TileEntityType<?> JUNCTION_ITEM_PROXY = null;
     @ObjectHolder("filtered_item_proxy")
     public static final TileEntityType<?> FILTERED_ITEM_PROXY = null;
     @ObjectHolder("merger_item_proxy")
@@ -67,6 +69,7 @@ public class ModTileEntities {
         ModTileEntities.registerProxy(registry, "item_proxy", ()->new RegularCapabilityProxyTileEntity(ITEM_PROXY, ITEM_HANDLER_CAPABILITY), ModBlocks.ITEM_PROXY.get());
         ModTileEntities.registerProxy(registry, "sided_item_proxy", ()->new SidedCapabilityProxyTileEntity(SIDED_ITEM_PROXY, ITEM_HANDLER_CAPABILITY), ModBlocks.SIDED_ITEM_PROXY.get());
         ModTileEntities.registerProxy(registry, "nullsided_item_proxy", ()->new NullsidedCapabilityProxyTileEntity(NULLSIDED_ITEM_PROXY, ITEM_HANDLER_CAPABILITY), ModBlocks.NULLSIDED_ITEM_PROXY.get());
+        ModTileEntities.registerProxy(registry, "junction_item_proxy", ()->new JunctionCapabilityProxyTileEntity(JUNCTION_ITEM_PROXY, ITEM_HANDLER_CAPABILITY), ModBlocks.JUNCTION_ITEM_PROXY.get());
         ModTileEntities.registerProxy(registry, "filtered_item_proxy", ()->new FilteredItemProxyTileEntity(FILTERED_ITEM_PROXY), ModBlocks.FILTERED_ITEM_PROXY.get());
         ModTileEntities.registerProxy(registry, "merger_item_proxy", ()->new MergerItemProxyTileEntity(MERGER_ITEM_PROXY), ModBlocks.MERGER_ITEM_PROXY.get());
 

@@ -4,6 +4,7 @@
     "proxies:item_proxy",
     "proxies:sided_item_proxy",
     "proxies:nullsided_item_proxy",
+    "proxies:junction_item_proxy",
     "proxies:filtered_item_proxy",
     "proxies:merger_item_proxy",
     "proxies:fluid_proxy",

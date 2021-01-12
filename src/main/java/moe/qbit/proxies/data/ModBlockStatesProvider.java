@@ -20,6 +20,7 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         this.simpleDirectionalBlock(ModBlocks.ITEM_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.SIDED_ITEM_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.NULLSIDED_ITEM_PROXY.get());
+        this.simpleBlock(ModBlocks.JUNCTION_ITEM_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.FILTERED_ITEM_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.MERGER_ITEM_PROXY.get());
 
