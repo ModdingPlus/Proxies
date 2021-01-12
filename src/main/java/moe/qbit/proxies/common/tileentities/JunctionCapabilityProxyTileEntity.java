@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class JunctionCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
+public class JunctionCapabilityProxyTileEntity extends CommonCapabilityProxyTileEntity {
     private final NullableHashBasedTable<Capability<?>, Direction, CapabilityPointer<?>> pointers = new NullableHashBasedTable<>();
 
     public JunctionCapabilityProxyTileEntity(TileEntityType<?> tileEntityTypeIn, Capability<?>... supportedCapabilities) {
@@ -28,19 +28,14 @@ public class JunctionCapabilityProxyTileEntity extends CapabilityProxyTileEntity
     }
 
     @Override
-    public <T> CapabilityPointer<T> getProxyCapabilityPointer(Capability<T> capability, @Nullable Direction side, int chainIndex) {
-        if(!pointers.contains(capability, side)) {
-            if(this.supportedCapabilities.contains(capability) && side!=null)
-                pointers.put(capability, side, CapabilityPointer.<T>of(this.getWorld(), this.getPos().offset(side.getOpposite()), side));
+    public <T> CapabilityPointer<T> getProxyCapabilityPointer(Capability<T> capability, @Nullable Direction accessedSide, @Nullable Direction actualSide, int chainIndex) {
+        if(!pointers.contains(capability, accessedSide)) {
+            if(this.supportedCapabilities.contains(capability) && actualSide!=null)
+                pointers.put(capability, actualSide, CapabilityPointer.<T>of(this.getWorld(), this.getPos().offset(actualSide.getOpposite()), actualSide));
             else
-                pointers.put(capability, side, CapabilityPointer.<T>empty());
+                pointers.put(capability, actualSide, CapabilityPointer.<T>empty());
         }
         //noinspection unchecked
-        return (CapabilityPointer<T>)pointers.get(capability, side);
-    }
-
-    @Override
-    public int getMaxProxyChainLength(@Nonnull Capability<?> cap, @Nullable Direction side) {
-        return ServerConfiguration.CONFIGURATION.chain_length_limit.get();
+        return (CapabilityPointer<T>)pointers.get(capability, actualSide);
     }
 }

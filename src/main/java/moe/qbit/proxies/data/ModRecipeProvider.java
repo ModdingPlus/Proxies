@@ -29,6 +29,8 @@ public class ModRecipeProvider extends RecipeProvider {
 
       ShapelessRecipeBuilder.shapelessRecipe(ModItems.NULLSIDED_ITEM_PROXY.get()).addIngredient(ModItems.SIDED_ITEM_PROXY.get()).addIngredient(Tags.Items.ENDER_PEARLS).setGroup(ModBlocks.NULLSIDED_ITEM_PROXY.get().getRegistryName().toString()).addCriterion("has_sided_proxy", hasItem(ModItems.SIDED_ITEM_PROXY.get())).build(consumer);
 
+      ShapedRecipeBuilder.shapedRecipe(ModItems.JUNCTION_ITEM_PROXY.get(), 6).key('#', ItemTags.PLANKS).key('H', Items.HOPPER).patternLine("#H#").patternLine("H H").patternLine("#H#").setGroup(ModBlocks.JUNCTION_ITEM_PROXY.get().getRegistryName().toString()).addCriterion("has_hopper", hasItem(Items.HOPPER)).build(consumer);
+
       ShapelessRecipeBuilder.shapelessRecipe(ModItems.FILTERED_ITEM_PROXY.get()).addIngredient(ModItems.ITEM_PROXY.get()).addIngredient(Items.COMPARATOR).setGroup(ModBlocks.FILTERED_ITEM_PROXY.get().getRegistryName().toString()).addCriterion("has_proxy", hasItem(ModItems.ITEM_PROXY.get())).build(consumer);
 
       ShapedRecipeBuilder.shapedRecipe(ModItems.MERGER_ITEM_PROXY.get(), 3).key('#', ItemTags.PLANKS).key('F', ItemTags.FENCES).key('H', Items.HOPPER).patternLine("#F#").patternLine("H H").patternLine("#F#").setGroup(ModBlocks.MERGER_ITEM_PROXY.get().getRegistryName().toString()).addCriterion("has_hopper", hasItem(Items.HOPPER)).build(consumer);

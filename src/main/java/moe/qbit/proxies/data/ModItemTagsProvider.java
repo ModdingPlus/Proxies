@@ -24,6 +24,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
       this.copy(ModBlockTags.REGULAR_PROXIES, ModItemTags.REGULAR_PROXIES);
       this.copy(ModBlockTags.SIDED_PROXIES, ModItemTags.SIDED_PROXIES);
       this.copy(ModBlockTags.NULLSIDED_PROXIES, ModItemTags.NULLSIDED_PROXIES);
+      this.copy(ModBlockTags.JUNCTION_PROXIES, ModItemTags.JUNCTION_PROXIES);
       this.copy(ModBlockTags.FILTERED_PROXIES, ModItemTags.FILTERED_PROXIES);
       this.copy(ModBlockTags.MERGER_PROXIES, ModItemTags.MERGER_PROXIES);
    }

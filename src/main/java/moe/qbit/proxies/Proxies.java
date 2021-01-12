@@ -35,7 +35,7 @@ public class Proxies
     }).setTabPath("proxies");
 
     public Proxies(){
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ServerConfiguration.CONFIGURATION_SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfiguration.CONFIGURATION_SPEC);
 
         ModItems.init();
         ModBlocks.init();

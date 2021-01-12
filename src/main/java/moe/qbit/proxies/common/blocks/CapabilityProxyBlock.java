@@ -7,7 +7,9 @@ import net.minecraft.block.DirectionalBlock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Util;
@@ -23,42 +25,11 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class CapabilityProxyBlock extends DirectionalBlock {
-    private final Supplier<TileEntity> tileEntityFactory;
+public class CapabilityProxyBlock extends CommonProxyBlock {
+    public static final DirectionProperty FACING = DirectionalBlock.FACING;
 
     protected CapabilityProxyBlock(Properties builder, Supplier<TileEntity> tileEntityFactory) {
-        super(builder);
-        this.tileEntityFactory = tileEntityFactory;
-    }
-
-    /**
-     * Called throughout the code as a replacement for block instanceof BlockContainer
-     * Moving this to the Block base class allows for mods that wish to extend vanilla
-     * blocks, and also want to have a tile entity on that block, may.
-     *
-     * Return true from this function to specify this block has a tile entity.
-     *
-     * @param state State of the current block
-     * @return True if block has a tile entity, false otherwise
-     */
-    public boolean hasTileEntity(BlockState state)
-    {
-        return true;
-    }
-
-    /**
-     * Called throughout the code as a replacement for ITileEntityProvider.createNewTileEntity
-     * Return the same thing you would from that function.
-     * This will fall back to ITileEntityProvider.createNewTileEntity(World) if this block is a ITileEntityProvider
-     *
-     * @param state The state of the current block
-     * @param world The world to create the TE in
-     * @return A instance of a class extending TileEntity
-     */
-    @Nullable
-    public TileEntity createTileEntity(BlockState state, IBlockReader world)
-    {
-        return this.tileEntityFactory.get();
+        super(builder, tileEntityFactory);
     }
 
     @Override
@@ -80,12 +51,5 @@ public class CapabilityProxyBlock extends DirectionalBlock {
             }
         }
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(new TranslationTextComponent(Util.makeTranslationKey("tooltip", this.getRegistryName())));
-        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 }

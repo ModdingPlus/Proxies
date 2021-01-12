@@ -34,7 +34,7 @@ public abstract class CapabilityProxyTileEntity extends TileEntity implements Ca
     }
 
     @Override
-    public <T> void addCachedCapabilityHandler(Capability<T> capability, Direction side, LazyOptional<T> handler) {
+    public <T> void addCachedCapabilityHandler(Capability<T> capability, Direction accessedSide, Direction actualSide, LazyOptional<T> handler) {
         this.cachedHandlers.add(handler);
         handler.addListener((h)->this.cachedHandlers.remove(handler));
     }
@@ -45,11 +45,11 @@ public abstract class CapabilityProxyTileEntity extends TileEntity implements Ca
     {
         if(this.canResolve(cap, side, 0)) {
             LazyOptional<T> resolved = this.resolve(cap, side, 0);
-            addCachedCapabilityHandler(cap, side, resolved);
+            addCachedCapabilityHandler(cap, side, side, resolved);
             return resolved;
         } else {
             if (this.supportedCapabilities.contains(cap))
-                return this.getProxyCapabilityHandler(cap, side, this.getMaxProxyChainLength(cap, side));
+                return this.getProxyCapabilityHandler(cap, side, side, this.getMaxProxyChainLength(cap, side));
             else
                 return super.getCapability(cap, side);
         }

@@ -6,6 +6,7 @@ import mcp.MethodsReturnNonnullByDefault;
 import moe.qbit.proxies.api.CapabilityPointer;
 import moe.qbit.proxies.api.CapabilityProxyTileEntity;
 import moe.qbit.proxies.api.NullableHashBasedTable;
+import moe.qbit.proxies.common.blocks.CapabilityProxyBlock;
 import moe.qbit.proxies.configuration.ServerConfiguration;
 import net.minecraft.block.DirectionalBlock;
 import net.minecraft.tileentity.TileEntityType;
@@ -18,7 +19,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class SidedCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
+public class SidedCapabilityProxyTileEntity extends CommonCapabilityProxyTileEntity {
     private final NullableHashBasedTable<Capability<?>, Direction, CapabilityPointer<?>> pointers = new NullableHashBasedTable<>();
 
     public SidedCapabilityProxyTileEntity(TileEntityType<?> tileEntityTypeIn, Capability<?>... supportedCapabilities) {
@@ -26,20 +27,15 @@ public class SidedCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
     }
 
     @Override
-    public <T> CapabilityPointer<T> getProxyCapabilityPointer(Capability<T> capability, @Nullable Direction side, int chainIndex) {
-        Direction facing = this.getBlockState().get(DirectionalBlock.FACING);
-        if(!pointers.contains(capability, side)) {
+    public <T> CapabilityPointer<T> getProxyCapabilityPointer(Capability<T> capability, @Nullable Direction accessedSide, @Nullable Direction actualSide, int chainIndex) {
+        Direction facing = this.getBlockState().get(CapabilityProxyBlock.FACING);
+        if(!pointers.contains(capability, accessedSide)) {
             if(this.supportedCapabilities.contains(capability))
-                pointers.put(capability, side, CapabilityPointer.<T>of(this.getWorld(), this.getPos().offset(facing), side));
+                pointers.put(capability, accessedSide, CapabilityPointer.<T>of(this.getWorld(), this.getPos().offset(facing), accessedSide, facing.getOpposite()));
             else
-                pointers.put(capability, side, CapabilityPointer.<T>empty());
+                pointers.put(capability, accessedSide, CapabilityPointer.<T>empty());
         }
         //noinspection unchecked
-        return (CapabilityPointer<T>)pointers.get(capability, side);
-    }
-
-    @Override
-    public int getMaxProxyChainLength(@Nonnull Capability<?> cap, @Nullable Direction side) {
-        return ServerConfiguration.CONFIGURATION.chain_length_limit.get();
+        return (CapabilityPointer<T>)pointers.get(capability, accessedSide);
     }
 }

@@ -17,11 +17,11 @@ import java.util.Stack;
 @MethodsReturnNonnullByDefault
 public interface CapabilityProxy {
     /** Pointers should be static instances shared across calls wherever possible. **/
-    <T> CapabilityPointer<T> getProxyCapabilityPointer(Capability<T> capability, @Nullable Direction side, int chainIndex);
+    <T> CapabilityPointer<T> getProxyCapabilityPointer(Capability<T> capability, @Nullable Direction accessedSide, @Nullable Direction actualSide, int chainIndex);
 
-    default <T> LazyOptional<T> getProxyCapabilityHandler(final Capability<T> capability, @Nullable final Direction side, int maxChainLength){
+    default <T> LazyOptional<T> getProxyCapabilityHandler(final Capability<T> capability, @Nullable final Direction accessedSide, @Nullable final Direction actualSide, int maxChainLength){
         final Stack<CapabilityPointer<T>> pointers = new Stack<>();
-        CapabilityPointer<T> currentPointer = this.getProxyCapabilityPointer(capability, side, 0);
+        CapabilityPointer<T> currentPointer = this.getProxyCapabilityPointer(capability, accessedSide, actualSide, 0);
 
         LazyOptional<T> returnHandler = null;
 
@@ -33,9 +33,7 @@ public interface CapabilityProxy {
         while(chainIndex++ < maxChainLength) {
             // return empty if there is a loop or the pointer is empty
 
-            // Detect infinte loop via merger
-            if (pointers.contains(currentPointer) || !currentPointer.isPresent()){
-                //TODO: find better solution to this, this prevents junction type proxies
+            if (!currentPointer.isPresent()){
                 returnHandler = LazyOptional.empty();
                 break;
             }
@@ -44,10 +42,6 @@ public interface CapabilityProxy {
 
             TileEntity tileEntity = currentPointer.getTileEntity();
             if (tileEntity != null){
-                if(tileEntity == this){
-                    returnHandler = LazyOptional.empty();
-                    break;
-                }
 
                 //noinspection ConstantConditions
                 if(bannedTargets.contains(tileEntity.getType().getRegistryName().toString())){
@@ -60,10 +54,10 @@ public interface CapabilityProxy {
 
                     CapabilityProxy capabilityProxy = (CapabilityProxy) tileEntity;
 
-                    if(capabilityProxy.canResolve(capability, side, chainIndex)){
+                    if(capabilityProxy.canResolve(capability, accessedSide, chainIndex)){
                         // if the proxy can resolve by itself, don't traverse further but resolve using proxy
                         //the code below is the same as for regular tile entities but using the resolve function
-                        LazyOptional<T> handler = capabilityProxy.resolve(capability, side, chainIndex);
+                        LazyOptional<T> handler = capabilityProxy.resolve(capability, accessedSide, chainIndex);
 
                         if (!handler.isPresent()){
                             // return a new empty LazyOptional and not the tile entity's so it can be independently invalidated
@@ -80,11 +74,11 @@ public interface CapabilityProxy {
 
                         break;
                     } else {
-                        currentPointer = capabilityProxy.getProxyCapabilityPointer(capability, currentPointer.getSide(), chainIndex);
+                        currentPointer = capabilityProxy.getProxyCapabilityPointer(capability, currentPointer.getAccessedSide(), currentPointer.getActualSide(), chainIndex);
                     }
 
                 } else {
-                    LazyOptional<T> handler = tileEntity.getCapability(capability, currentPointer.getSide());
+                    LazyOptional<T> handler = tileEntity.getCapability(capability, currentPointer.getAccessedSide());
 
                     if (!handler.isPresent()){
                         // return a new empty LazyOptional and not the tile entity's so it can be independently invalidated
@@ -126,13 +120,13 @@ public interface CapabilityProxy {
         return LazyOptional.empty();
     }
 
-    <T> void addCachedCapabilityHandler(Capability<T> capability, @Nullable Direction side, LazyOptional<T> handler);
+    <T> void addCachedCapabilityHandler(Capability<T> capability, @Nullable Direction accessedSide, @Nullable Direction actualSide, LazyOptional<T> handler);
 
     static <T> void addCachedCapabilityHandlers(Capability<T> capability, Collection<CapabilityPointer<T>> pointers, LazyOptional<T> handler){
         for(CapabilityPointer<T> cachePointer : pointers) {
             TileEntity cacheTileEntity = cachePointer.getTileEntity();
             if (cacheTileEntity instanceof CapabilityProxy)
-                ((CapabilityProxy) cacheTileEntity).addCachedCapabilityHandler(capability, cachePointer.getSide(), handler);
+                ((CapabilityProxy) cacheTileEntity).addCachedCapabilityHandler(capability, cachePointer.getAccessedSide(), cachePointer.getActualSide(), handler);
         }
     }
 

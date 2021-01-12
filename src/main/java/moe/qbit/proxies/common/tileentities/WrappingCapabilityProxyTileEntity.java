@@ -2,6 +2,7 @@ package moe.qbit.proxies.common.tileentities;
 
 import com.google.common.collect.Maps;
 import moe.qbit.proxies.api.CapabilityPointer;
+import moe.qbit.proxies.common.blocks.CapabilityProxyBlock;
 import net.minecraft.block.DirectionalBlock;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -24,8 +25,8 @@ public class WrappingCapabilityProxyTileEntity extends RegularCapabilityProxyTil
     }
 
     @Override
-    public <T> CapabilityPointer<T> getProxyCapabilityPointer(Capability<T> capability, @Nullable Direction side, int chainIndex) {
-        Direction facing = this.getBlockState().get(DirectionalBlock.FACING);
+    public <T> CapabilityPointer<T> getProxyCapabilityPointer(Capability<T> capability, @Nullable Direction accessedSide, @Nullable Direction actualSide, int chainIndex) {
+        Direction facing = this.getBlockState().get(CapabilityProxyBlock.FACING);
         if(!pointers.containsKey(capability)) {
             if(this.wrapperFunctions.containsKey(capability))
                 // noinspection ConstantConditions,unchecked,unchecked

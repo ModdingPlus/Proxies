@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "proxies:junction_item_proxy",
+  "pattern": [
+    "#H#",
+    "H H",
+    "#H#"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    }
+  },
+  "result": {
+    "item": "proxies:junction_item_proxy",
+    "count": 6
+  }
+}

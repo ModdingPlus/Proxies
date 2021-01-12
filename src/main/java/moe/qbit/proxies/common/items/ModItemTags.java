@@ -14,6 +14,7 @@ public class ModItemTags {
     public static final ITag.INamedTag<Item> REGULAR_PROXIES = ItemTags.makeWrapperTag(Proxies.MODID+":regular_proxies");
     public static final ITag.INamedTag<Item> SIDED_PROXIES = ItemTags.makeWrapperTag(Proxies.MODID+":sided_proxies");
     public static final ITag.INamedTag<Item> NULLSIDED_PROXIES = ItemTags.makeWrapperTag(Proxies.MODID+":nullsided_proxies");
+    public static final ITag.INamedTag<Item> JUNCTION_PROXIES = ItemTags.makeWrapperTag(Proxies.MODID+":junction_proxies");
     public static final ITag.INamedTag<Item> FILTERED_PROXIES = ItemTags.makeWrapperTag(Proxies.MODID+":filtered_proxies");
     public static final ITag.INamedTag<Item> MERGER_PROXIES = ItemTags.makeWrapperTag(Proxies.MODID+":merger_proxies");
 }

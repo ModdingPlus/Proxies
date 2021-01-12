@@ -6,8 +6,8 @@ import moe.qbit.proxies.api.CapabilityProxy;
 import moe.qbit.proxies.api.CapabilityProxyTileEntity;
 import moe.qbit.proxies.api.mergers.IMergerFunction;
 import moe.qbit.proxies.api.mergers.MergerFunctionMap;
+import moe.qbit.proxies.common.blocks.CapabilityProxyBlock;
 import moe.qbit.proxies.configuration.ServerConfiguration;
-import net.minecraft.block.DirectionalBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -28,6 +28,8 @@ public class MergerCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
     private final MergerFunctionMap mergerFunctions = new MergerFunctionMap();
     protected final HashMap<Capability<?>, LazyOptional<?>> optionals = new HashMap<>();
 
+    private boolean resolving = false;
+
     public MergerCapabilityProxyTileEntity(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
@@ -44,22 +46,25 @@ public class MergerCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
 
     @Override
     public <T> LazyOptional<T> resolve(Capability<T> capability, @Nullable Direction side, int chainIndex) {
-        Direction facing = this.getBlockState().get(DirectionalBlock.FACING);
+        Direction facing = this.getBlockState().get(CapabilityProxyBlock.FACING);
 
         if(!this.optionals.containsKey(capability)){
+
             if(this.mergerFunctions.containsKey(capability)) {
+
                 TileEntity target1 = this.getWorld().getTileEntity(this.getPos().offset(facing));
                 TileEntity target2 = this.getWorld().getTileEntity(this.getPos().offset(facing.getOpposite()));
-                if(target1 != null || target2 != null){
+                if (target1 != null || target2 != null) {
+
                     List<LazyOptional<T>> targetOptionals = new ArrayList<>();
                     int remainingLength = this.getMaxProxyChainLength(capability, side) - chainIndex;
 
-                    if(target1!=null)
-                        targetOptionals.add(MergerCapabilityProxyTileEntity.resolveFor(target1, capability, facing.getOpposite(), remainingLength));
-                    if(target2!=null)
-                        targetOptionals.add(MergerCapabilityProxyTileEntity.resolveFor(target2, capability, facing, remainingLength));
+                    if (target1 != null)
+                        targetOptionals.add(this.resolveFor(target1, capability, facing.getOpposite(), remainingLength));
+                    if (target2 != null)
+                        targetOptionals.add(this.resolveFor(target2, capability, facing, remainingLength));
 
-                    this.optionals.put(capability, LazyOptional.<T>of(()->{
+                    this.optionals.put(capability, LazyOptional.<T>of(() -> {
                         List<T> targetCaps = targetOptionals.stream().filter(LazyOptional::isPresent)
                                 .map(o -> o.orElseThrow(() -> new IllegalStateException("Invalid capability optional")))
                                 .collect(Collectors.toList());
@@ -69,26 +74,47 @@ public class MergerCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
                     targetOptionals.forEach(o -> o.addListener(t -> this.invalidateCachedHandlers()));
 
                     //in case of an infinite loop the handler added may be invalidated already and will thus be instantly removed
-                    if(!this.optionals.containsKey(capability))
+                    if (!this.optionals.containsKey(capability))
                         this.optionals.put(capability, LazyOptional.<T>empty());
+
                 } else {
                     this.optionals.put(capability, LazyOptional.<T>empty());
                 }
             } else {
                 this.optionals.put(capability, LazyOptional.<T>empty());
             }
+
+
         }
         //noinspection unchecked
         return (LazyOptional<T>)this.optionals.get(capability);
     }
 
-    public static <T> LazyOptional<T> resolveFor(TileEntity tileEntity, Capability<T> capability, @Nullable Direction side, int maxChainLength){
-        if(tileEntity instanceof CapabilityProxy){
-            return ((CapabilityProxy) tileEntity).getProxyCapabilityHandler(capability, side, maxChainLength);
+    public <T> LazyOptional<T> resolveFor(TileEntity tileEntity, Capability<T> capability, @Nullable Direction side, int maxChainLength){
+        //check for infinite loop
+        if(!this.isResolving()) {
+            this.setResolving();
+
+            LazyOptional<T> ret;
+
+            if (tileEntity instanceof CapabilityProxy) {
+                ret = ((CapabilityProxy) tileEntity).getProxyCapabilityHandler(capability, side, side, maxChainLength);
+            } else {
+                ret = tileEntity.getCapability(capability, side);
+            }
+
+            this.setResolved();
+            return ret;
         } else {
-            return tileEntity.getCapability(capability, side);
+            return LazyOptional.empty();
         }
     }
+
+    private void setResolving() { this.resolving = true; }
+    private boolean isResolving() { return this.resolving; }
+    private void setResolved() { this.resolving = false; }
+
+
 
     @Override
     public void invalidateCachedHandlers() {
@@ -97,7 +123,7 @@ public class MergerCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
     }
 
     @Override
-    public <T> CapabilityPointer<T> getProxyCapabilityPointer(Capability<T> capability, @Nullable Direction side, int chainIndex) {
+    public <T> CapabilityPointer<T> getProxyCapabilityPointer(Capability<T> capability, @Nullable Direction accessedSide, @Nullable Direction actualSide, int chainIndex) {
         return CapabilityPointer.empty();
     }
 
