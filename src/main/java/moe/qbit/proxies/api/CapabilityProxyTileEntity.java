@@ -43,17 +43,17 @@ public abstract class CapabilityProxyTileEntity extends TileEntity implements Ca
     @Nonnull
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side)
     {
-        if(this.canResolve(cap, side, 0)) {
-            LazyOptional<T> resolved = this.resolve(cap, side, 0);
+        if(this.canResolve(cap, side, side, 0)) {
+            LazyOptional<T> resolved = this.resolve(cap, side, side, 0);
             addCachedCapabilityHandler(cap, side, side, resolved);
             return resolved;
         } else {
             if (this.supportedCapabilities.contains(cap))
-                return this.getProxyCapabilityHandler(cap, side, side, this.getMaxProxyChainLength(cap, side));
+                return this.getProxyCapabilityHandler(cap, side, side, this.getMaxProxyChainLength(cap, side, side));
             else
                 return super.getCapability(cap, side);
         }
     }
 
-    public abstract int getMaxProxyChainLength(@Nonnull Capability<?> cap, @Nullable Direction side);
+    public abstract int getMaxProxyChainLength(@Nonnull Capability<?> cap, @Nullable Direction accessedSide, @Nullable Direction actualSide);
 }

@@ -22,7 +22,7 @@ public abstract class CommonCapabilityProxyTileEntity extends CapabilityProxyTil
     }
 
     @Override
-    public int getMaxProxyChainLength(@Nonnull Capability<?> cap, @Nullable Direction side) {
+    public int getMaxProxyChainLength(@Nonnull Capability<?> cap, @Nullable Direction accessedSide, @Nullable Direction actualSide) {
         return ServerConfiguration.CONFIGURATION.chain_length_limit.get();
     }
 }

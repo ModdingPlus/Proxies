@@ -54,10 +54,10 @@ public interface CapabilityProxy {
 
                     CapabilityProxy capabilityProxy = (CapabilityProxy) tileEntity;
 
-                    if(capabilityProxy.canResolve(capability, accessedSide, chainIndex)){
+                    if(capabilityProxy.canResolve(capability, currentPointer.getAccessedSide(), currentPointer.getActualSide(), chainIndex)){
                         // if the proxy can resolve by itself, don't traverse further but resolve using proxy
                         //the code below is the same as for regular tile entities but using the resolve function
-                        LazyOptional<T> handler = capabilityProxy.resolve(capability, accessedSide, chainIndex);
+                        LazyOptional<T> handler = capabilityProxy.resolve(capability, currentPointer.getAccessedSide(), currentPointer.getActualSide(), chainIndex);
 
                         if (!handler.isPresent()){
                             // return a new empty LazyOptional and not the tile entity's so it can be independently invalidated
@@ -111,10 +111,10 @@ public interface CapabilityProxy {
         return returnHandler;
     }
 
-    default boolean canResolve(final Capability<?> capability, @Nullable final Direction side, int chainIndex){
+    default boolean canResolve(final Capability<?> capability, @Nullable final Direction accessedSide, @Nullable final Direction actualSide, int chainIndex){
         return false;
     }
-    default <T> LazyOptional<T> resolve(final Capability<T> capability, @Nullable final Direction side, int chainIndex){
+    default <T> LazyOptional<T> resolve(final Capability<T> capability, @Nullable final Direction accessedSide, @Nullable final Direction actualSide, int chainIndex){
         //TODO: this might be used to implement advanced caching in the future
         //for now this can be used for advanced routing for things like mergers
         return LazyOptional.empty();

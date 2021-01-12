@@ -7,6 +7,7 @@ import moe.qbit.proxies.api.CapabilityProxyTileEntity;
 import moe.qbit.proxies.api.mergers.IMergerFunction;
 import moe.qbit.proxies.api.mergers.MergerFunctionMap;
 import moe.qbit.proxies.common.blocks.CapabilityProxyBlock;
+import moe.qbit.proxies.common.tileentities.CommonCapabilityProxyTileEntity;
 import moe.qbit.proxies.configuration.ServerConfiguration;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class MergerCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
+public class MergerCapabilityProxyTileEntity extends CommonCapabilityProxyTileEntity {
     private final MergerFunctionMap mergerFunctions = new MergerFunctionMap();
     protected final HashMap<Capability<?>, LazyOptional<?>> optionals = new HashMap<>();
 
@@ -40,12 +41,12 @@ public class MergerCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
     }
 
     @Override
-    public boolean canResolve(Capability<?> capability, @Nullable Direction side, int chainIndex) {
+    public boolean canResolve(Capability<?> capability, @Nullable Direction accessedSide, @Nullable Direction actualSide, int chainIndex) {
         return true;
     }
 
     @Override
-    public <T> LazyOptional<T> resolve(Capability<T> capability, @Nullable Direction side, int chainIndex) {
+    public <T> LazyOptional<T> resolve(Capability<T> capability, @Nullable Direction accessedSide, @Nullable Direction actualSide, int chainIndex) {
         Direction facing = this.getBlockState().get(CapabilityProxyBlock.FACING);
 
         if(!this.optionals.containsKey(capability)){
@@ -57,7 +58,7 @@ public class MergerCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
                 if (target1 != null || target2 != null) {
 
                     List<LazyOptional<T>> targetOptionals = new ArrayList<>();
-                    int remainingLength = this.getMaxProxyChainLength(capability, side) - chainIndex;
+                    int remainingLength = this.getMaxProxyChainLength(capability, accessedSide, actualSide) - chainIndex;
 
                     if (target1 != null)
                         targetOptionals.add(this.resolveFor(target1, capability, facing.getOpposite(), remainingLength));
@@ -91,21 +92,31 @@ public class MergerCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
     }
 
     public <T> LazyOptional<T> resolveFor(TileEntity tileEntity, Capability<T> capability, @Nullable Direction side, int maxChainLength){
-        //check for infinite loop
-        if(!this.isResolving()) {
-            this.setResolving();
+        try {
+            //check for infinite loop
+            if (!this.isResolving()) {
+                this.setResolving();
 
-            LazyOptional<T> ret;
+                LazyOptional<T> ret;
 
-            if (tileEntity instanceof CapabilityProxy) {
-                ret = ((CapabilityProxy) tileEntity).getProxyCapabilityHandler(capability, side, side, maxChainLength);
+                if (tileEntity instanceof CapabilityProxy) {
+                    CapabilityProxy capabilityProxy = (CapabilityProxy) tileEntity;
+                    if(capabilityProxy.canResolve(capability, side, side, maxChainLength)){
+                        ret = capabilityProxy.resolve(capability, side, side, maxChainLength);
+                    } else {
+                        ret = capabilityProxy.getProxyCapabilityHandler(capability, side, side, maxChainLength);
+                    }
+                } else {
+                    ret = tileEntity.getCapability(capability, side);
+                }
+
+                this.setResolved();
+                return ret;
             } else {
-                ret = tileEntity.getCapability(capability, side);
+                return LazyOptional.empty();
             }
-
-            this.setResolved();
-            return ret;
-        } else {
+        } catch (StackOverflowError stackOverflowError){
+            //making really sure that it doesn't happen
             return LazyOptional.empty();
         }
     }
@@ -113,8 +124,6 @@ public class MergerCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
     private void setResolving() { this.resolving = true; }
     private boolean isResolving() { return this.resolving; }
     private void setResolved() { this.resolving = false; }
-
-
 
     @Override
     public void invalidateCachedHandlers() {
@@ -125,10 +134,5 @@ public class MergerCapabilityProxyTileEntity extends CapabilityProxyTileEntity {
     @Override
     public <T> CapabilityPointer<T> getProxyCapabilityPointer(Capability<T> capability, @Nullable Direction accessedSide, @Nullable Direction actualSide, int chainIndex) {
         return CapabilityPointer.empty();
-    }
-
-    @Override
-    public int getMaxProxyChainLength(@Nonnull Capability<?> cap, @Nullable Direction side) {
-        return ServerConfiguration.CONFIGURATION.chain_length_limit.get();
     }
 }
