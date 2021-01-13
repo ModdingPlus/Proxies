@@ -61,7 +61,7 @@ public class FilteredCapabilityProxyContainer extends BaseContainer {
      * Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player
      * inventory and the other inventory(s).
      */
-    //TODO: Fix this
+    //FIXME: Fix this
     public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
         ItemStack previous = null;
         Slot slot = this.inventorySlots.get(index);

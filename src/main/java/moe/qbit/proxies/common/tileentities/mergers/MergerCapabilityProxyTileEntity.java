@@ -52,35 +52,35 @@ public class MergerCapabilityProxyTileEntity extends CommonCapabilityProxyTileEn
         if(!this.optionals.containsKey(capability)){
 
             if(this.mergerFunctions.containsKey(capability)) {
+                int remainingLength = this.getMaxProxyChainLength(capability, accessedSide, actualSide) - chainIndex;
 
-                TileEntity target1 = this.getWorld().getTileEntity(this.getPos().offset(facing));
-                TileEntity target2 = this.getWorld().getTileEntity(this.getPos().offset(facing.getOpposite()));
-                if (target1 != null || target2 != null) {
+                List<LazyOptional<T>> targetOptionals = new ArrayList<>();
 
-                    List<LazyOptional<T>> targetOptionals = new ArrayList<>();
-                    int remainingLength = this.getMaxProxyChainLength(capability, accessedSide, actualSide) - chainIndex;
+                targetOptionals.add(this.resolveFor(this.getWorld().getTileEntity(this.getPos().offset(facing)), capability, facing.getOpposite(), remainingLength));
+                targetOptionals.add(this.resolveFor(this.getWorld().getTileEntity(this.getPos().offset(facing.getOpposite())), capability, facing, remainingLength));
 
-                    if (target1 != null)
-                        targetOptionals.add(this.resolveFor(target1, capability, facing.getOpposite(), remainingLength));
-                    if (target2 != null)
-                        targetOptionals.add(this.resolveFor(target2, capability, facing, remainingLength));
+                targetOptionals.removeIf(o->!o.isPresent());
 
-                    this.optionals.put(capability, LazyOptional.<T>of(() -> {
+                if (targetOptionals.size()>1){
+                    LazyOptional<T> optional = LazyOptional.<T>of(() -> {
                         List<T> targetCaps = targetOptionals.stream().filter(LazyOptional::isPresent)
                                 .map(o -> o.orElseThrow(() -> new IllegalStateException("Invalid capability optional")))
                                 .collect(Collectors.toList());
                         return this.mergerFunctions.getMergerFunction(capability).merge(targetCaps);
-                    }));
-
-                    targetOptionals.forEach(o -> o.addListener(t -> this.invalidateCachedHandlers()));
-
-                    //in case of an infinite loop the handler added may be invalidated already and will thus be instantly removed
-                    if (!this.optionals.containsKey(capability))
-                        this.optionals.put(capability, LazyOptional.<T>empty());
-
+                    });
+                    this.optionals.put(capability, optional);
+                    this.addCachedCapabilityHandler(capability, accessedSide, actualSide, optional);
+                }else if(targetOptionals.size()==1){
+                    this.optionals.put(capability, targetOptionals.get(0));
                 } else {
                     this.optionals.put(capability, LazyOptional.<T>empty());
                 }
+                targetOptionals.forEach(o -> o.addListener(t -> this.invalidateCachedHandlers()));
+
+                //in case of an infinite loop the handler added may be invalidated already and will thus be instantly removed
+                //TODO: this may be fixed now but will have to check this first
+                if (!this.optionals.containsKey(capability))
+                    this.optionals.put(capability, LazyOptional.<T>empty());
             } else {
                 this.optionals.put(capability, LazyOptional.<T>empty());
             }
@@ -88,10 +88,13 @@ public class MergerCapabilityProxyTileEntity extends CommonCapabilityProxyTileEn
 
         }
         //noinspection unchecked
-        return (LazyOptional<T>)this.optionals.get(capability);
+        LazyOptional<?> ret = this.optionals.get(capability);
+        if(ret.isPresent())
+            ret.addListener(l->this.invalidateCachedHandlers());
+        return (LazyOptional<T>) ret;
     }
 
-    public <T> LazyOptional<T> resolveFor(TileEntity tileEntity, Capability<T> capability, @Nullable Direction side, int maxChainLength){
+    public <T> LazyOptional<T> resolveFor(@Nullable TileEntity tileEntity, Capability<T> capability, @Nullable Direction side, int maxChainLength){
         try {
             //check for infinite loop
             if (!this.isResolving()) {
@@ -106,11 +109,13 @@ public class MergerCapabilityProxyTileEntity extends CommonCapabilityProxyTileEn
                     } else {
                         ret = capabilityProxy.getProxyCapabilityHandler(capability, side, side, maxChainLength);
                     }
-                } else {
+                    capabilityProxy.addInvalidationListener(capability, ()->this.invalidateCachedHandlers());
+                } else if(tileEntity != null) {
                     ret = tileEntity.getCapability(capability, side);
+                } else {
+                    return LazyOptional.empty();
                 }
 
-                this.setResolved();
                 return ret;
             } else {
                 return LazyOptional.empty();
@@ -118,6 +123,8 @@ public class MergerCapabilityProxyTileEntity extends CommonCapabilityProxyTileEn
         } catch (StackOverflowError stackOverflowError){
             //making really sure that it doesn't happen
             return LazyOptional.empty();
+        } finally {
+            this.setResolved();
         }
     }
 

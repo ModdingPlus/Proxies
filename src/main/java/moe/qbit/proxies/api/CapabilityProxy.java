@@ -123,12 +123,15 @@ public interface CapabilityProxy {
     <T> void addCachedCapabilityHandler(Capability<T> capability, @Nullable Direction accessedSide, @Nullable Direction actualSide, LazyOptional<T> handler);
 
     static <T> void addCachedCapabilityHandlers(Capability<T> capability, Collection<CapabilityPointer<T>> pointers, LazyOptional<T> handler){
+        //TODO: maybe replace this with addInvalidationListener
         for(CapabilityPointer<T> cachePointer : pointers) {
             TileEntity cacheTileEntity = cachePointer.getTileEntity();
             if (cacheTileEntity instanceof CapabilityProxy)
                 ((CapabilityProxy) cacheTileEntity).addCachedCapabilityHandler(capability, cachePointer.getAccessedSide(), cachePointer.getActualSide(), handler);
         }
     }
+
+    void addInvalidationListener(Capability<?> capability, Runnable listener);
 
     static <T> T wrapHandler(final Stack<CapabilityPointer<T>> pointers, T handler){
         // iterate(pop) stack of capability pointers in reverse to apply wrappers in right order

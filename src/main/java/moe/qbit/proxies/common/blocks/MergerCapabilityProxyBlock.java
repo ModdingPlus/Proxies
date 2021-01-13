@@ -1,6 +1,7 @@
 package moe.qbit.proxies.common.blocks;
 
 import moe.qbit.proxies.api.CapabilityProxyTileEntity;
+import moe.qbit.proxies.common.tileentities.CommonCapabilityProxyTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -17,9 +18,9 @@ public class MergerCapabilityProxyBlock extends CapabilityProxyBlock {
 
     @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if(stateIn.get(FACING)==facing || stateIn.get(FACING)==facing.getOpposite()){
+        if(!worldIn.isRemote() && (stateIn.get(FACING)==facing || stateIn.get(FACING)==facing.getOpposite())){
             TileEntity tileEntity = worldIn.getTileEntity(currentPos);
-            if(tileEntity instanceof CapabilityProxyTileEntity){
+            if(tileEntity instanceof CommonCapabilityProxyTileEntity){
                 ((CapabilityProxyTileEntity)tileEntity).invalidateCachedHandlers();
             }
         }
