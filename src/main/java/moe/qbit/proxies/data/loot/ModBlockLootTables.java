@@ -22,10 +22,12 @@ public class ModBlockLootTables extends BaseLootTableProvider {
       lootTables.put(ModBlocks.FLUID_PROXY.get(), createStandardTable(ModBlocks.FLUID_PROXY.get()));
       lootTables.put(ModBlocks.SIDED_FLUID_PROXY.get(), createStandardTable(ModBlocks.SIDED_FLUID_PROXY.get()));
       lootTables.put(ModBlocks.NULLSIDED_FLUID_PROXY.get(), createStandardTable(ModBlocks.NULLSIDED_FLUID_PROXY.get()));
+      lootTables.put(ModBlocks.JUNCTION_FLUID_PROXY.get(), createStandardTable(ModBlocks.JUNCTION_FLUID_PROXY.get()));
       lootTables.put(ModBlocks.FILTERED_FLUID_PROXY.get(), createStandardTable(ModBlocks.FILTERED_FLUID_PROXY.get()));
       lootTables.put(ModBlocks.MERGER_FLUID_PROXY.get(), createStandardTable(ModBlocks.MERGER_FLUID_PROXY.get()));
 
       lootTables.put(ModBlocks.ITEM_PROXY.get(), createStandardTable(ModBlocks.ENERGY_PROXY.get()));
-      lootTables.put(ModBlocks.ITEM_PROXY.get(), createStandardTable(ModBlocks.MERGER_ENERGY_PROXY.get()));
+      lootTables.put(ModBlocks.JUNCTION_ENERGY_PROXY.get(), createStandardTable(ModBlocks.JUNCTION_ENERGY_PROXY.get()));
+      lootTables.put(ModBlocks.MERGER_ENERGY_PROXY.get(), createStandardTable(ModBlocks.MERGER_ENERGY_PROXY.get()));
    }
 }

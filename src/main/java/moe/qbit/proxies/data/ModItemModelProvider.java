@@ -26,10 +26,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         this.withExistingParentBlock(ModBlocks.FLUID_PROXY.get());
         this.withExistingParentBlock(ModBlocks.SIDED_FLUID_PROXY.get());
         this.withExistingParentBlock(ModBlocks.NULLSIDED_FLUID_PROXY.get());
+        this.withExistingParentBlock(ModBlocks.JUNCTION_FLUID_PROXY.get());
         this.withExistingParentBlock(ModBlocks.FILTERED_FLUID_PROXY.get());
         this.withExistingParentBlock(ModBlocks.MERGER_FLUID_PROXY.get());
 
         this.withExistingParentBlock(ModBlocks.ENERGY_PROXY.get());
+        this.withExistingParentBlock(ModBlocks.JUNCTION_ENERGY_PROXY.get());
         this.withExistingParentBlock(ModBlocks.MERGER_ENERGY_PROXY.get());
     }
 

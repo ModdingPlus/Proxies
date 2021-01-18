@@ -6,18 +6,25 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MergerFluidHandler implements IFluidHandler {
-    public final List<IFluidHandler> handlers;
+    public final List<IFluidHandler> handlers = new ArrayList<>();
 
     public MergerFluidHandler(IFluidHandler... handlers) {
-        this.handlers = Arrays.asList(handlers);
+        this(Arrays.asList(handlers));
     }
 
     public MergerFluidHandler(List<IFluidHandler> handlers) {
-        this.handlers = handlers;
+        //flattening for optimization
+        for(IFluidHandler handler:handlers){
+            if(handler instanceof MergerFluidHandler)
+                this.handlers.addAll(((MergerFluidHandler) handler).handlers);
+            else
+                this.handlers.add(handler);
+        }
     }
 
     @Override

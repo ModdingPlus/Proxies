@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "proxies:energy_proxy",
+    "proxies:junction_energy_proxy",
     "proxies:merger_energy_proxy"
   ]
 }

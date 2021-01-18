@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "proxies:energy_proxy",
+      "name": "proxies:merger_energy_proxy",
       "rolls": 1,
       "entries": [
         {
@@ -38,7 +38,7 @@
               ]
             }
           ],
-          "name": "proxies:energy_proxy"
+          "name": "proxies:merger_energy_proxy"
         }
       ]
     }

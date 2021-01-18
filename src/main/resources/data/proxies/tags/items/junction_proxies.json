@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "proxies:junction_item_proxy"
+    "proxies:junction_item_proxy",
+    "proxies:junction_fluid_proxy",
+    "proxies:junction_energy_proxy"
   ]
 }

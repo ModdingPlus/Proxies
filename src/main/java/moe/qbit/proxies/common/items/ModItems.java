@@ -26,9 +26,11 @@ public class ModItems {
     public static final RegistryObject<Item> FLUID_PROXY = ITEMS.register("fluid_proxy", () -> new BlockItem(ModBlocks.FLUID_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> SIDED_FLUID_PROXY = ITEMS.register("sided_fluid_proxy", () -> new BlockItem(ModBlocks.SIDED_FLUID_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> NULLSIDED_FLUID_PROXY = ITEMS.register("nullsided_fluid_proxy", () -> new BlockItem(ModBlocks.NULLSIDED_FLUID_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
+    public static final RegistryObject<Item> JUNCTION_FLUID_PROXY = ITEMS.register("junction_fluid_proxy", () -> new BlockItem(ModBlocks.JUNCTION_FLUID_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> FILTERED_FLUID_PROXY = ITEMS.register("filtered_fluid_proxy", () -> new BlockItem(ModBlocks.FILTERED_FLUID_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> MERGER_FLUID_PROXY = ITEMS.register("merger_fluid_proxy", () -> new BlockItem(ModBlocks.MERGER_FLUID_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
 
     public static final RegistryObject<Item> ENERGY_PROXY = ITEMS.register("energy_proxy", () -> new BlockItem(ModBlocks.ENERGY_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
+    public static final RegistryObject<Item> JUNCTION_ENERGY_PROXY = ITEMS.register("junction_energy_proxy", () -> new BlockItem(ModBlocks.JUNCTION_ENERGY_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> MERGER_ENERGY_PROXY = ITEMS.register("merger_energy_proxy", () -> new BlockItem(ModBlocks.MERGER_ENERGY_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
 }

@@ -16,17 +16,17 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
    protected void registerTags() {
       this.getOrCreateBuilder(ModBlockTags.PROXIES).add(
               ModBlocks.ITEM_PROXY.get(), ModBlocks.SIDED_ITEM_PROXY.get(), ModBlocks.NULLSIDED_ITEM_PROXY.get(), ModBlocks.JUNCTION_ITEM_PROXY.get(), ModBlocks.FILTERED_ITEM_PROXY.get(), ModBlocks.MERGER_ITEM_PROXY.get(),
-              ModBlocks.FLUID_PROXY.get(), ModBlocks.SIDED_FLUID_PROXY.get(), ModBlocks.NULLSIDED_FLUID_PROXY.get(), ModBlocks.FILTERED_FLUID_PROXY.get(), ModBlocks.MERGER_FLUID_PROXY.get(),
-              ModBlocks.ENERGY_PROXY.get(), ModBlocks.MERGER_ENERGY_PROXY.get());
+              ModBlocks.FLUID_PROXY.get(), ModBlocks.SIDED_FLUID_PROXY.get(), ModBlocks.NULLSIDED_FLUID_PROXY.get(), ModBlocks.JUNCTION_FLUID_PROXY.get(), ModBlocks.FILTERED_FLUID_PROXY.get(), ModBlocks.MERGER_FLUID_PROXY.get(),
+              ModBlocks.ENERGY_PROXY.get(), ModBlocks.JUNCTION_ENERGY_PROXY.get(), ModBlocks.MERGER_ENERGY_PROXY.get());
 
       this.getOrCreateBuilder(ModBlockTags.ITEM_PROXIES).add(ModBlocks.ITEM_PROXY.get(), ModBlocks.SIDED_ITEM_PROXY.get(), ModBlocks.NULLSIDED_ITEM_PROXY.get(), ModBlocks.JUNCTION_ITEM_PROXY.get(), ModBlocks.FILTERED_ITEM_PROXY.get(), ModBlocks.MERGER_ITEM_PROXY.get());
-      this.getOrCreateBuilder(ModBlockTags.FLUID_PROXIES).add(ModBlocks.FLUID_PROXY.get(), ModBlocks.SIDED_FLUID_PROXY.get(), ModBlocks.NULLSIDED_FLUID_PROXY.get(), ModBlocks.FILTERED_FLUID_PROXY.get(), ModBlocks.MERGER_FLUID_PROXY.get());
-      this.getOrCreateBuilder(ModBlockTags.ENERGY_PROXIES).add(ModBlocks.ENERGY_PROXY.get(), ModBlocks.MERGER_ENERGY_PROXY.get());
+      this.getOrCreateBuilder(ModBlockTags.FLUID_PROXIES).add(ModBlocks.FLUID_PROXY.get(), ModBlocks.SIDED_FLUID_PROXY.get(), ModBlocks.NULLSIDED_FLUID_PROXY.get(), ModBlocks.JUNCTION_FLUID_PROXY.get(), ModBlocks.FILTERED_FLUID_PROXY.get(), ModBlocks.MERGER_FLUID_PROXY.get());
+      this.getOrCreateBuilder(ModBlockTags.ENERGY_PROXIES).add(ModBlocks.ENERGY_PROXY.get(), ModBlocks.JUNCTION_ENERGY_PROXY.get(), ModBlocks.MERGER_ENERGY_PROXY.get());
 
       this.getOrCreateBuilder(ModBlockTags.REGULAR_PROXIES).add(ModBlocks.ITEM_PROXY.get(), ModBlocks.FLUID_PROXY.get(), ModBlocks.ENERGY_PROXY.get());
       this.getOrCreateBuilder(ModBlockTags.SIDED_PROXIES).add(ModBlocks.SIDED_ITEM_PROXY.get(), ModBlocks.FLUID_PROXY.get());
       this.getOrCreateBuilder(ModBlockTags.NULLSIDED_PROXIES).add(ModBlocks.NULLSIDED_ITEM_PROXY.get(), ModBlocks.NULLSIDED_FLUID_PROXY.get());
-      this.getOrCreateBuilder(ModBlockTags.JUNCTION_PROXIES).add(ModBlocks.JUNCTION_ITEM_PROXY.get());
+      this.getOrCreateBuilder(ModBlockTags.JUNCTION_PROXIES).add(ModBlocks.JUNCTION_ITEM_PROXY.get(), ModBlocks.JUNCTION_FLUID_PROXY.get(), ModBlocks.JUNCTION_ENERGY_PROXY.get());
       this.getOrCreateBuilder(ModBlockTags.FILTERED_PROXIES).add(ModBlocks.FILTERED_ITEM_PROXY.get(), ModBlocks.FILTERED_FLUID_PROXY.get());
       this.getOrCreateBuilder(ModBlockTags.MERGER_PROXIES).add(ModBlocks.MERGER_ITEM_PROXY.get(), ModBlocks.MERGER_FLUID_PROXY.get(), ModBlocks.MERGER_ENERGY_PROXY.get());
    }

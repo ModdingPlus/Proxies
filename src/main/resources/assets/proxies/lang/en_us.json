@@ -18,6 +18,8 @@
   "tooltip.proxies.sided_fluid_proxy": "A fluid proxy that respects the side the proxy was accessed from.",
   "block.proxies.nullsided_fluid_proxy": "Null-Sided Fluid Proxy",
   "tooltip.proxies.nullsided_fluid_proxy": "An fluid proxy that accesses the the target on... \"the null-side of the block\"??",
+  "block.proxies.junction_fluid_proxy": "Junction Fluid Proxy",
+  "tooltip.proxies.junction_fluid_proxy": "A fluid proxy that functions as a junction, allowing crossing multiple proxy chains.",
   "block.proxies.filtered_fluid_proxy": "Filtered Fluid Proxy",
   "tooltip.proxies.filtered_fluid_proxy": "A fluid proxy that allows filtering fluids.",
   "block.proxies.merger_fluid_proxy": "Tank Merger",
@@ -25,6 +27,8 @@
 
   "block.proxies.energy_proxy": "Energy Proxy",
   "tooltip.proxies.energy_proxy": "A passive block that redirects every interaction with its energy storage to the targeted block.",
+  "block.proxies.junction_energy_proxy": "Junction Energy Proxy",
+  "tooltip.proxies.junction_energy_proxy": "An energy proxy that functions as a junction, allowing crossing multiple proxy chains.",
   "block.proxies.merger_energy_proxy": "Battery Merger",
   "tooltip.proxies.merger_energy_proxy": "An energy proxy that combines two energy storages into one big one.",
 

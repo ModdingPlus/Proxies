@@ -1,7 +1,8 @@
 package moe.qbit.proxies.common.tileentities.filters;
 
+import moe.qbit.proxies.api.SideMapping;
 import moe.qbit.proxies.api.filtering.IConfigurableFilter;
-import moe.qbit.proxies.common.tileentities.WrappingCapabilityProxyTileEntity;
+import moe.qbit.proxies.common.tileentities.GenericCapabilityProxyTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
@@ -10,12 +11,12 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.function.Function;
 
-public class FilteredCapabilityProxyTileEntity<T,U> extends WrappingCapabilityProxyTileEntity {
+public class FilteredCapabilityProxyTileEntity<T,U> extends GenericCapabilityProxyTileEntity {
     private final ItemStackHandler filterItemHandler = new ItemStackHandler(3){ protected void onContentsChanged(int slot){markDirty();} };
     private final IConfigurableFilter<U> filter;
 
     public FilteredCapabilityProxyTileEntity(TileEntityType<?> tileEntityTypeIn, Function<IItemHandler, IConfigurableFilter<U>> filterFactory) {
-        super(tileEntityTypeIn);
+        super(tileEntityTypeIn, SideMapping.REGULAR);
         this.filter = filterFactory.apply(this.filterItemHandler);
     }
 

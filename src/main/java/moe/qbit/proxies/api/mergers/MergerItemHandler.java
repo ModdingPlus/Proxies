@@ -4,18 +4,25 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MergerItemHandler implements IItemHandler {
-    public final List<IItemHandler> handlers;
+    public final List<IItemHandler> handlers = new ArrayList<>();
 
     public MergerItemHandler(IItemHandler... handlers) {
-        this.handlers = Arrays.asList(handlers);
+        this(Arrays.asList(handlers));
     }
 
     public MergerItemHandler(List<IItemHandler> handlers) {
-        this.handlers = handlers;
+        //flattening for optimization
+        for(IItemHandler handler:handlers){
+            if(handler instanceof MergerItemHandler)
+                this.handlers.addAll(((MergerItemHandler) handler).handlers);
+            else
+                this.handlers.add(handler);
+        }
     }
 
     @Override

@@ -10,9 +10,11 @@
     "proxies:fluid_proxy",
     "proxies:sided_fluid_proxy",
     "proxies:nullsided_fluid_proxy",
+    "proxies:junction_fluid_proxy",
     "proxies:filtered_fluid_proxy",
     "proxies:merger_fluid_proxy",
     "proxies:energy_proxy",
+    "proxies:junction_energy_proxy",
     "proxies:merger_energy_proxy"
   ]
 }

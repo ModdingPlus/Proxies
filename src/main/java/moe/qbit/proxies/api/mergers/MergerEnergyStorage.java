@@ -4,18 +4,25 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MergerEnergyStorage implements IEnergyStorage {
-    public final List<IEnergyStorage> handlers;
+    public final List<IEnergyStorage> handlers = new ArrayList<>();
 
     public MergerEnergyStorage(IEnergyStorage... handlers) {
-        this.handlers = Arrays.asList(handlers);
+        this(Arrays.asList(handlers));
     }
 
     public MergerEnergyStorage(List<IEnergyStorage> handlers) {
-        this.handlers = handlers;
+        //flattening for optimization
+        for(IEnergyStorage handler:handlers){
+            if(handler instanceof MergerEnergyStorage)
+                this.handlers.addAll(((MergerEnergyStorage) handler).handlers);
+            else
+                this.handlers.add(handler);
+        }
     }
 
     @Override

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "proxies:block/junction_energy_proxy"
+    }
+  }
+}

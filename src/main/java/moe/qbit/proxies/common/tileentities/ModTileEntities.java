@@ -1,6 +1,7 @@
 package moe.qbit.proxies.common.tileentities;
 
 import moe.qbit.proxies.Proxies;
+import moe.qbit.proxies.api.SideMapping;
 import moe.qbit.proxies.common.blocks.ModBlocks;
 import moe.qbit.proxies.common.tileentities.filters.FilteredFluidProxyTileEntity;
 import moe.qbit.proxies.common.tileentities.filters.FilteredItemProxyTileEntity;
@@ -52,6 +53,8 @@ public class ModTileEntities {
     public static final TileEntityType<?> SIDED_FLUID_PROXY = null;
     @ObjectHolder("nullsided_fluid_proxy")
     public static final TileEntityType<?> NULLSIDED_FLUID_PROXY = null;
+    @ObjectHolder("junction_fluid_proxy")
+    public static final TileEntityType<?> JUNCTION_FLUID_PROXY = null;
     @ObjectHolder("filtered_fluid_proxy")
     public static final TileEntityType<?> FILTERED_FLUID_PROXY = null;
     @ObjectHolder("merger_fluid_proxy")
@@ -59,6 +62,8 @@ public class ModTileEntities {
 
     @ObjectHolder("energy_proxy")
     public static final TileEntityType<?> ENERGY_PROXY = null;
+    @ObjectHolder("junction_energy_proxy")
+    public static final TileEntityType<?> JUNCTION_ENERGY_PROXY = null;
     @ObjectHolder("merger_energy_proxy")
     public static final TileEntityType<?> MERGER_ENERGY_PROXY = null;
 
@@ -66,20 +71,22 @@ public class ModTileEntities {
     @SuppressWarnings("ConstantConditions")
     public static void registerTileEntityTypes(RegistryEvent.Register<TileEntityType<?>> event){
         IForgeRegistry<TileEntityType<?>> registry = event.getRegistry();
-        ModTileEntities.registerProxy(registry, "item_proxy", ()->new RegularCapabilityProxyTileEntity(ITEM_PROXY, ITEM_HANDLER_CAPABILITY), ModBlocks.ITEM_PROXY.get());
-        ModTileEntities.registerProxy(registry, "sided_item_proxy", ()->new SidedCapabilityProxyTileEntity(SIDED_ITEM_PROXY, ITEM_HANDLER_CAPABILITY), ModBlocks.SIDED_ITEM_PROXY.get());
-        ModTileEntities.registerProxy(registry, "nullsided_item_proxy", ()->new NullsidedCapabilityProxyTileEntity(NULLSIDED_ITEM_PROXY, ITEM_HANDLER_CAPABILITY), ModBlocks.NULLSIDED_ITEM_PROXY.get());
-        ModTileEntities.registerProxy(registry, "junction_item_proxy", ()->new JunctionCapabilityProxyTileEntity(JUNCTION_ITEM_PROXY, ITEM_HANDLER_CAPABILITY), ModBlocks.JUNCTION_ITEM_PROXY.get());
+        ModTileEntities.registerProxy(registry, "item_proxy", ()->new GenericCapabilityProxyTileEntity(ITEM_PROXY, SideMapping.REGULAR, ITEM_HANDLER_CAPABILITY), ModBlocks.ITEM_PROXY.get());
+        ModTileEntities.registerProxy(registry, "sided_item_proxy", ()->new GenericCapabilityProxyTileEntity(SIDED_ITEM_PROXY, SideMapping.SIDED, ITEM_HANDLER_CAPABILITY), ModBlocks.SIDED_ITEM_PROXY.get());
+        ModTileEntities.registerProxy(registry, "nullsided_item_proxy", ()->new GenericCapabilityProxyTileEntity(NULLSIDED_ITEM_PROXY, SideMapping.NULLSIDED, ITEM_HANDLER_CAPABILITY), ModBlocks.NULLSIDED_ITEM_PROXY.get());
+        ModTileEntities.registerProxy(registry, "junction_item_proxy", ()->new GenericCapabilityProxyTileEntity(JUNCTION_ITEM_PROXY, SideMapping.JUNCTION, ITEM_HANDLER_CAPABILITY), ModBlocks.JUNCTION_ITEM_PROXY.get());
         ModTileEntities.registerProxy(registry, "filtered_item_proxy", ()->new FilteredItemProxyTileEntity(FILTERED_ITEM_PROXY), ModBlocks.FILTERED_ITEM_PROXY.get());
         ModTileEntities.registerProxy(registry, "merger_item_proxy", ()->new MergerItemProxyTileEntity(MERGER_ITEM_PROXY), ModBlocks.MERGER_ITEM_PROXY.get());
 
-        ModTileEntities.registerProxy(registry, "fluid_proxy", ()->new RegularCapabilityProxyTileEntity(FLUID_PROXY, FLUID_HANDLER_CAPABILITY), ModBlocks.FLUID_PROXY.get());
-        ModTileEntities.registerProxy(registry, "sided_fluid_proxy", ()->new SidedCapabilityProxyTileEntity(SIDED_FLUID_PROXY, FLUID_HANDLER_CAPABILITY), ModBlocks.SIDED_FLUID_PROXY.get());
-        ModTileEntities.registerProxy(registry, "nullsided_fluid_proxy", ()->new NullsidedCapabilityProxyTileEntity(NULLSIDED_FLUID_PROXY, FLUID_HANDLER_CAPABILITY), ModBlocks.NULLSIDED_FLUID_PROXY.get());
+        ModTileEntities.registerProxy(registry, "fluid_proxy", ()->new GenericCapabilityProxyTileEntity(FLUID_PROXY, SideMapping.REGULAR, FLUID_HANDLER_CAPABILITY), ModBlocks.FLUID_PROXY.get());
+        ModTileEntities.registerProxy(registry, "sided_fluid_proxy", ()->new GenericCapabilityProxyTileEntity(SIDED_FLUID_PROXY, SideMapping.SIDED, FLUID_HANDLER_CAPABILITY), ModBlocks.SIDED_FLUID_PROXY.get());
+        ModTileEntities.registerProxy(registry, "nullsided_fluid_proxy", ()->new GenericCapabilityProxyTileEntity(NULLSIDED_FLUID_PROXY, SideMapping.NULLSIDED, FLUID_HANDLER_CAPABILITY), ModBlocks.NULLSIDED_FLUID_PROXY.get());
+        ModTileEntities.registerProxy(registry, "junction_fluid_proxy", ()->new GenericCapabilityProxyTileEntity(JUNCTION_FLUID_PROXY, SideMapping.JUNCTION, FLUID_HANDLER_CAPABILITY), ModBlocks.JUNCTION_FLUID_PROXY.get());
         ModTileEntities.registerProxy(registry, "filtered_fluid_proxy", ()->new FilteredFluidProxyTileEntity(FILTERED_FLUID_PROXY), ModBlocks.FILTERED_FLUID_PROXY.get());
         ModTileEntities.registerProxy(registry, "merger_fluid_proxy", ()->new MergerFluidProxyTileEntity(MERGER_FLUID_PROXY), ModBlocks.MERGER_FLUID_PROXY.get());
 
-        ModTileEntities.registerProxy(registry, "energy_proxy", ()->new RegularCapabilityProxyTileEntity(ENERGY_PROXY, ENERGY_STORAGE_CAPABILITY), ModBlocks.ENERGY_PROXY.get());
+        ModTileEntities.registerProxy(registry, "energy_proxy", ()->new GenericCapabilityProxyTileEntity(ENERGY_PROXY, SideMapping.REGULAR, ENERGY_STORAGE_CAPABILITY), ModBlocks.ENERGY_PROXY.get());
+        ModTileEntities.registerProxy(registry, "junction_energy_proxy", ()->new GenericCapabilityProxyTileEntity(JUNCTION_ENERGY_PROXY, SideMapping.JUNCTION, ENERGY_STORAGE_CAPABILITY), ModBlocks.JUNCTION_ENERGY_PROXY.get());
         ModTileEntities.registerProxy(registry, "merger_energy_proxy", ()->new MergerEnergyProxyTileEntity(MERGER_ENERGY_PROXY), ModBlocks.MERGER_ENERGY_PROXY.get());
     }
 

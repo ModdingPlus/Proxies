@@ -27,10 +27,12 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         this.simpleDirectionalBlock(ModBlocks.FLUID_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.SIDED_FLUID_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.NULLSIDED_FLUID_PROXY.get());
+        this.simpleBlock(ModBlocks.JUNCTION_FLUID_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.FILTERED_FLUID_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.MERGER_FLUID_PROXY.get());
 
         this.simpleDirectionalBlock(ModBlocks.ENERGY_PROXY.get());
+        this.simpleBlock(ModBlocks.JUNCTION_ENERGY_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.MERGER_ENERGY_PROXY.get());
     }
 
