@@ -3,6 +3,8 @@
   "values": [
     "proxies:junction_item_proxy",
     "proxies:junction_fluid_proxy",
-    "proxies:junction_energy_proxy"
+    "proxies:junction_energy_proxy",
+    "proxies:sided_junction_item_proxy",
+    "proxies:sided_junction_fluid_proxy"
   ]
 }

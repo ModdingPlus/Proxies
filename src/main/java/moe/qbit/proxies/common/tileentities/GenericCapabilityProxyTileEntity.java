@@ -1,9 +1,10 @@
 package moe.qbit.proxies.common.tileentities;
 
+import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Table;
 import mcp.MethodsReturnNonnullByDefault;
 import moe.qbit.proxies.api.CapabilityPointer;
-import moe.qbit.proxies.api.NullableHashBasedTable;
 import moe.qbit.proxies.api.SideMapping;
 import moe.qbit.proxies.common.blocks.CapabilityProxyBlock;
 import net.minecraft.block.BlockState;
@@ -21,7 +22,7 @@ import java.util.function.Function;
 @MethodsReturnNonnullByDefault
 public class GenericCapabilityProxyTileEntity extends CommonCapabilityProxyTileEntity {
     private final HashMap<Capability<?>, CapabilityPointer<?>> unsupportedPointers = new HashMap<>();
-    private final NullableHashBasedTable<Capability<?>, Integer, CapabilityPointer<?>> pointers = new NullableHashBasedTable<>();
+    private final Table<Capability<?>, Integer, CapabilityPointer<?>> pointers = HashBasedTable.create();
     private final SideMapping sideMapping;
     private final Map<Capability<?>, Function<?,?>> wrapperFunctions = Maps.newHashMap();
 

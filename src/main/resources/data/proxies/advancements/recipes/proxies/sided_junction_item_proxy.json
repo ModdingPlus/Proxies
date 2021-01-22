@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "proxies:sided_junction_item_proxy"
+    ]
+  },
+  "criteria": {
+    "has_junction": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "proxies:junction_item_proxy"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "proxies:sided_junction_item_proxy"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_junction",
+      "has_the_recipe"
+    ]
+  ]
+}

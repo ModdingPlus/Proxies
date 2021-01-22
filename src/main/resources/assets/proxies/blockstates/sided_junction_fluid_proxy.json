@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "proxies:block/sided_junction_fluid_proxy"
+    }
+  }
+}

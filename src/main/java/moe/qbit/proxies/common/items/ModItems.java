@@ -20,6 +20,7 @@ public class ModItems {
     public static final RegistryObject<Item> SIDED_ITEM_PROXY = ITEMS.register("sided_item_proxy", () -> new BlockItem(ModBlocks.SIDED_ITEM_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> NULLSIDED_ITEM_PROXY = ITEMS.register("nullsided_item_proxy", () -> new BlockItem(ModBlocks.NULLSIDED_ITEM_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> JUNCTION_ITEM_PROXY = ITEMS.register("junction_item_proxy", () -> new BlockItem(ModBlocks.JUNCTION_ITEM_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
+    public static final RegistryObject<Item> SIDED_JUNCTION_ITEM_PROXY = ITEMS.register("sided_junction_item_proxy", () -> new BlockItem(ModBlocks.SIDED_JUNCTION_ITEM_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> FILTERED_ITEM_PROXY = ITEMS.register("filtered_item_proxy", () -> new BlockItem(ModBlocks.FILTERED_ITEM_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> MERGER_ITEM_PROXY = ITEMS.register("merger_item_proxy", () -> new BlockItem(ModBlocks.MERGER_ITEM_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
 
@@ -27,6 +28,7 @@ public class ModItems {
     public static final RegistryObject<Item> SIDED_FLUID_PROXY = ITEMS.register("sided_fluid_proxy", () -> new BlockItem(ModBlocks.SIDED_FLUID_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> NULLSIDED_FLUID_PROXY = ITEMS.register("nullsided_fluid_proxy", () -> new BlockItem(ModBlocks.NULLSIDED_FLUID_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> JUNCTION_FLUID_PROXY = ITEMS.register("junction_fluid_proxy", () -> new BlockItem(ModBlocks.JUNCTION_FLUID_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
+    public static final RegistryObject<Item> SIDED_JUNCTION_FLUID_PROXY = ITEMS.register("sided_junction_fluid_proxy", () -> new BlockItem(ModBlocks.SIDED_JUNCTION_FLUID_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> FILTERED_FLUID_PROXY = ITEMS.register("filtered_fluid_proxy", () -> new BlockItem(ModBlocks.FILTERED_FLUID_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
     public static final RegistryObject<Item> MERGER_FLUID_PROXY = ITEMS.register("merger_fluid_proxy", () -> new BlockItem(ModBlocks.MERGER_FLUID_PROXY.get(), new Item.Properties().group(Proxies.ITEM_GROUP)));
 

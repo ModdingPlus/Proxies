@@ -7,6 +7,7 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collection;
@@ -114,6 +115,7 @@ public interface CapabilityProxy {
     default boolean canResolve(final Capability<?> capability, @Nullable final Direction accessedSide, @Nullable final Direction actualSide, int chainIndex){
         return false;
     }
+    @Nonnull
     default <T> LazyOptional<T> resolve(final Capability<T> capability, @Nullable final Direction accessedSide, @Nullable final Direction actualSide, int chainIndex){
         //TODO: this might be used to implement advanced caching in the future
         //for now this can be used for advanced routing for things like mergers

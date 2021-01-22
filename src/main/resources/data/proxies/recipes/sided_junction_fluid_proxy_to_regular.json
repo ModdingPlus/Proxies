@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "proxies:junction_fluid_proxy",
+  "ingredients": [
+    {
+      "item": "proxies:sided_junction_fluid_proxy"
+    }
+  ],
+  "result": {
+    "item": "proxies:junction_fluid_proxy"
+  }
+}

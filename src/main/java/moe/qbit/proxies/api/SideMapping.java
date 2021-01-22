@@ -15,18 +15,18 @@ public enum SideMapping {
 
     public MappedSide getMapping(@Nullable Direction facing, @Nullable Direction accessedSide, @Nullable Direction actualSide){
         switch (this){
+            case SIDED:
+                return new MappedSide(facing, accessedSide, accessedSide);
+            case NULLSIDED:
+                return new MappedSide(facing, null, 0);
+            case JUNCTION:
+                return new MappedSide(actualSide.getOpposite(), actualSide, actualSide);
+            case SIDED_JUNCTION:
+                return new MappedSide(actualSide.getOpposite(), accessedSide, accessedSide, actualSide);
             case REGULAR:
             default:
                 //noinspection ConstantConditions
-                return new MappedSide(facing, facing.getOpposite(), -1);
-            case SIDED:
-                return new MappedSide(facing, accessedSide, accessedSide!=null?accessedSide.ordinal():-1);
-            case NULLSIDED:
-                return new MappedSide(facing, null, -1);
-            case JUNCTION:
-                return actualSide==null ? new MappedSide(null, null, -1) : new MappedSide(actualSide.getOpposite(), actualSide, actualSide.ordinal());
-            case SIDED_JUNCTION:
-                return actualSide==null ? new MappedSide(null, null, -1) : new MappedSide(actualSide.getOpposite(), accessedSide, actualSide.ordinal()<<3+(accessedSide==null?7:accessedSide.ordinal()));
+                return new MappedSide(facing, facing.getOpposite(), 0);
         }
     }
 
@@ -42,6 +42,10 @@ public enum SideMapping {
             this.cachingKey = cachingKey;
         }
 
+        public MappedSide(Direction traversalDirection, Direction accessDirection, Direction... cachingDirections) {
+            this(traversalDirection, accessDirection, directionsToNumber(cachingDirections));
+        }
+
         public Direction getTraversalDirection() {
             return traversalDirection;
         }
@@ -52,6 +56,17 @@ public enum SideMapping {
 
         public int getCachingKey() {
             return this.cachingKey;
+        }
+
+        public static int directionsToNumber(Direction... directions){
+            int ret = 0;
+
+            for(Direction dir : directions){
+                ret += dir!=null?dir.ordinal():6;
+                ret <<= 3;
+            }
+            ret >>= 3;
+            return ret;
         }
     }
 }

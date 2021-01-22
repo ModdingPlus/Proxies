@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "proxies:block/sided_junction_fluid_proxy"
+  }
+}

@@ -21,6 +21,7 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         this.simpleDirectionalBlock(ModBlocks.SIDED_ITEM_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.NULLSIDED_ITEM_PROXY.get());
         this.simpleBlock(ModBlocks.JUNCTION_ITEM_PROXY.get());
+        this.simpleBlock(ModBlocks.SIDED_JUNCTION_ITEM_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.FILTERED_ITEM_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.MERGER_ITEM_PROXY.get());
 
@@ -28,6 +29,7 @@ public class ModBlockStatesProvider extends BlockStateProvider {
         this.simpleDirectionalBlock(ModBlocks.SIDED_FLUID_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.NULLSIDED_FLUID_PROXY.get());
         this.simpleBlock(ModBlocks.JUNCTION_FLUID_PROXY.get());
+        this.simpleBlock(ModBlocks.SIDED_JUNCTION_FLUID_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.FILTERED_FLUID_PROXY.get());
         this.simpleDirectionalBlock(ModBlocks.MERGER_FLUID_PROXY.get());
 

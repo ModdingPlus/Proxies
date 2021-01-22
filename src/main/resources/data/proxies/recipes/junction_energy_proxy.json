@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "proxies:junction_energy_proxy",
+  "pattern": [
+    "#G#",
+    "G G",
+    "#G#"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "G": {
+      "tag": "forge:ingots/gold"
+    }
+  },
+  "result": {
+    "item": "proxies:junction_energy_proxy",
+    "count": 6
+  }
+}

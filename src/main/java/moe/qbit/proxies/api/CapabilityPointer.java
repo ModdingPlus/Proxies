@@ -13,6 +13,7 @@ import java.util.function.Function;
 @Immutable
 @ParametersAreNonnullByDefault
 public class CapabilityPointer<T>{
+    private static final CapabilityPointer<?> EMPTY = new CapabilityPointer<>();
     final private boolean isPresent;
     final private World world;
     final private BlockPos blockPos;
@@ -39,7 +40,8 @@ public class CapabilityPointer<T>{
     }
 
     public static <T> CapabilityPointer<T> empty(){
-        return new CapabilityPointer<>();
+        //noinspection unchecked
+        return EMPTY.cast();
     }
 
     public static <T> CapabilityPointer<T> of(World world, BlockPos blockPos, @Nullable Direction side) {
@@ -62,6 +64,11 @@ public class CapabilityPointer<T>{
     public Direction getActualSide() { return this.actualSide; }
     public boolean isPresent() { return this.isPresent; }
 
+    public <X> CapabilityPointer<X> cast()
+    {
+        //noinspection unchecked
+        return (CapabilityPointer<X>)this;
+    }
 
     public T wrap(T unwrapped) { return this.wrapper==null ? unwrapped : this.wrapper.apply(unwrapped); }
 

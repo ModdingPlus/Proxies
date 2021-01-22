@@ -24,6 +24,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> SIDED_ITEM_PROXY = BLOCKS.register("sided_item_proxy", () -> new CapabilityProxyBlock(PROPS, ()-> ModTileEntities.SIDED_ITEM_PROXY.create()));
     public static final RegistryObject<Block> NULLSIDED_ITEM_PROXY = BLOCKS.register("nullsided_item_proxy", () -> new CapabilityProxyBlock(PROPS, ()-> ModTileEntities.NULLSIDED_ITEM_PROXY.create()));
     public static final RegistryObject<Block> JUNCTION_ITEM_PROXY = BLOCKS.register("junction_item_proxy", () -> new JunctionCapabilityProxyBlock(PROPS, ()-> ModTileEntities.JUNCTION_ITEM_PROXY.create()));
+    public static final RegistryObject<Block> SIDED_JUNCTION_ITEM_PROXY = BLOCKS.register("sided_junction_item_proxy", () -> new JunctionCapabilityProxyBlock(PROPS, ()-> ModTileEntities.SIDED_JUNCTION_ITEM_PROXY.create()));
     public static final RegistryObject<Block> FILTERED_ITEM_PROXY = BLOCKS.register("filtered_item_proxy", () -> new FilteredCapabilityProxyBlock(PROPS, ()-> ModTileEntities.FILTERED_ITEM_PROXY.create()));
     public static final RegistryObject<Block> MERGER_ITEM_PROXY = BLOCKS.register("merger_item_proxy", () -> new MergerCapabilityProxyBlock(PROPS, ()-> ModTileEntities.MERGER_ITEM_PROXY.create()));
 
@@ -31,6 +32,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> SIDED_FLUID_PROXY = BLOCKS.register("sided_fluid_proxy", () -> new CapabilityProxyBlock(PROPS, ()-> ModTileEntities.SIDED_FLUID_PROXY.create()));
     public static final RegistryObject<Block> NULLSIDED_FLUID_PROXY = BLOCKS.register("nullsided_fluid_proxy", () -> new CapabilityProxyBlock(PROPS, ()-> ModTileEntities.NULLSIDED_FLUID_PROXY.create()));
     public static final RegistryObject<Block> JUNCTION_FLUID_PROXY = BLOCKS.register("junction_fluid_proxy", () -> new JunctionCapabilityProxyBlock(PROPS, ()-> ModTileEntities.JUNCTION_FLUID_PROXY.create()));
+    public static final RegistryObject<Block> SIDED_JUNCTION_FLUID_PROXY = BLOCKS.register("sided_junction_fluid_proxy", () -> new JunctionCapabilityProxyBlock(PROPS, ()-> ModTileEntities.SIDED_JUNCTION_FLUID_PROXY.create()));
     public static final RegistryObject<Block> FILTERED_FLUID_PROXY = BLOCKS.register("filtered_fluid_proxy", () -> new FilteredCapabilityProxyBlock(PROPS, ()-> ModTileEntities.FILTERED_FLUID_PROXY.create()));
     public static final RegistryObject<Block> MERGER_FLUID_PROXY = BLOCKS.register("merger_fluid_proxy", () -> new MergerCapabilityProxyBlock(PROPS, ()-> ModTileEntities.MERGER_ITEM_PROXY.create()));
 

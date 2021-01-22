@@ -30,6 +30,8 @@ public class ModRecipeProvider extends RecipeProvider {
       ShapelessRecipeBuilder.shapelessRecipe(ModItems.NULLSIDED_ITEM_PROXY.get()).addIngredient(ModItems.SIDED_ITEM_PROXY.get()).addIngredient(Tags.Items.ENDER_PEARLS).setGroup(ModBlocks.NULLSIDED_ITEM_PROXY.get().getRegistryName().toString()).addCriterion("has_sided_proxy", hasItem(ModItems.SIDED_ITEM_PROXY.get())).build(consumer);
 
       ShapedRecipeBuilder.shapedRecipe(ModItems.JUNCTION_ITEM_PROXY.get(), 6).key('#', ItemTags.PLANKS).key('H', Items.HOPPER).patternLine("#H#").patternLine("H H").patternLine("#H#").setGroup(ModBlocks.JUNCTION_ITEM_PROXY.get().getRegistryName().toString()).addCriterion("has_hopper", hasItem(Items.HOPPER)).build(consumer);
+      ShapelessRecipeBuilder.shapelessRecipe(ModItems.SIDED_JUNCTION_ITEM_PROXY.get()).addIngredient(ModItems.JUNCTION_ITEM_PROXY.get()).setGroup(ModBlocks.SIDED_JUNCTION_ITEM_PROXY.get().getRegistryName().toString()).addCriterion("has_junction", hasItem(ModItems.JUNCTION_ITEM_PROXY.get())).build(consumer);
+      ShapelessRecipeBuilder.shapelessRecipe(ModItems.JUNCTION_ITEM_PROXY.get()).addIngredient(ModItems.SIDED_JUNCTION_ITEM_PROXY.get()).setGroup(ModBlocks.JUNCTION_ITEM_PROXY.get().getRegistryName().toString()).addCriterion("has_junction", hasItem(ModItems.JUNCTION_ITEM_PROXY.get())).build(consumer, Proxies.MODID + ":sided_junction_item_proxy_to_regular");
 
       ShapelessRecipeBuilder.shapelessRecipe(ModItems.FILTERED_ITEM_PROXY.get()).addIngredient(ModItems.ITEM_PROXY.get()).addIngredient(Items.COMPARATOR).setGroup(ModBlocks.FILTERED_ITEM_PROXY.get().getRegistryName().toString()).addCriterion("has_proxy", hasItem(ModItems.ITEM_PROXY.get())).build(consumer);
 
@@ -42,13 +44,19 @@ public class ModRecipeProvider extends RecipeProvider {
 
       ShapelessRecipeBuilder.shapelessRecipe(ModItems.NULLSIDED_FLUID_PROXY.get()).addIngredient(ModItems.SIDED_FLUID_PROXY.get()).addIngredient(Tags.Items.ENDER_PEARLS).setGroup(ModBlocks.NULLSIDED_FLUID_PROXY.get().getRegistryName().toString()).addCriterion("has_sided_proxy", hasItem(ModItems.SIDED_FLUID_PROXY.get())).build(consumer);
 
+      ShapedRecipeBuilder.shapedRecipe(ModItems.JUNCTION_FLUID_PROXY.get(), 6).key('#', ItemTags.PLANKS).key('B', Items.BUCKET).patternLine("#B#").patternLine("B B").patternLine("#B#").setGroup(ModBlocks.JUNCTION_FLUID_PROXY.get().getRegistryName().toString()).addCriterion("has_bucket", hasItem(Items.BUCKET)).build(consumer);
+      ShapelessRecipeBuilder.shapelessRecipe(ModItems.SIDED_JUNCTION_FLUID_PROXY.get()).addIngredient(ModItems.JUNCTION_FLUID_PROXY.get()).setGroup(ModBlocks.SIDED_JUNCTION_FLUID_PROXY.get().getRegistryName().toString()).addCriterion("has_junction", hasItem(ModItems.JUNCTION_FLUID_PROXY.get())).build(consumer);
+      ShapelessRecipeBuilder.shapelessRecipe(ModItems.JUNCTION_FLUID_PROXY.get()).addIngredient(ModItems.SIDED_JUNCTION_FLUID_PROXY.get()).setGroup(ModBlocks.JUNCTION_FLUID_PROXY.get().getRegistryName().toString()).addCriterion("has_junction", hasItem(ModItems.JUNCTION_FLUID_PROXY.get())).build(consumer, Proxies.MODID + ":sided_junction_fluid_proxy_to_regular");
+
       ShapelessRecipeBuilder.shapelessRecipe(ModItems.FILTERED_FLUID_PROXY.get()).addIngredient(ModItems.FLUID_PROXY.get()).addIngredient(Items.COMPARATOR).setGroup(ModBlocks.FILTERED_FLUID_PROXY.get().getRegistryName().toString()).addCriterion("has_proxy", hasItem(ModItems.FLUID_PROXY.get())).build(consumer);
 
       ShapedRecipeBuilder.shapedRecipe(ModItems.MERGER_FLUID_PROXY.get(), 3).key('#', ItemTags.PLANKS).key('F', ItemTags.FENCES).key('B', Items.BUCKET).patternLine("#F#").patternLine("B B").patternLine("#F#").setGroup(ModBlocks.MERGER_FLUID_PROXY.get().getRegistryName().toString()).addCriterion("has_bucket", hasItem(Items.BUCKET)).build(consumer);
 
       //ENERGY
       ShapedRecipeBuilder.shapedRecipe(ModItems.ENERGY_PROXY.get(), 3).key('#', ItemTags.PLANKS).key('F', ItemTags.FENCES).key('G', Tags.Items.INGOTS_GOLD).patternLine("#F#").patternLine("FGF").patternLine("#F#").setGroup(ModBlocks.ENERGY_PROXY.get().getRegistryName().toString()).addCriterion("has_gold", hasItem(Tags.Items.INGOTS_GOLD)).build(consumer);
-      
+
+      ShapedRecipeBuilder.shapedRecipe(ModItems.JUNCTION_ENERGY_PROXY.get(), 6).key('#', ItemTags.PLANKS).key('G', Tags.Items.INGOTS_GOLD).patternLine("#G#").patternLine("G G").patternLine("#G#").setGroup(ModBlocks.JUNCTION_ENERGY_PROXY.get().getRegistryName().toString()).addCriterion("has_gold", hasItem(Tags.Items.INGOTS_GOLD)).build(consumer);
+
       ShapedRecipeBuilder.shapedRecipe(ModItems.MERGER_ENERGY_PROXY.get(), 3).key('#', ItemTags.PLANKS).key('F', ItemTags.FENCES).key('G', Tags.Items.INGOTS_GOLD).patternLine("#F#").patternLine("G G").patternLine("#F#").setGroup(ModBlocks.MERGER_ENERGY_PROXY.get().getRegistryName().toString()).addCriterion("has_gold", hasItem(Tags.Items.INGOTS_GOLD)).build(consumer);
    }
 

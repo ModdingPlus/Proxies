@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "proxies:sided_item_proxy",
-    "proxies:fluid_proxy"
+    "proxies:fluid_proxy",
+    "proxies:sided_junction_item_proxy",
+    "proxies:sided_junction_fluid_proxy"
   ]
 }
